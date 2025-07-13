@@ -1,0 +1,9 @@
+﻿{
+  "acceptTeeEula": true,
+  "agentId": 12,
+  "agentName": "codespace-agent",
+  "poolId": 1,
+  "poolName": "Default",
+  "serverUrl": "https://dev.azure.com/PawelCO/",
+  "workFolder": "_work"
+}
