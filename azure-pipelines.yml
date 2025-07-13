@@ -17,16 +17,17 @@ steps:
   displayName: 'Run npm install'
   inputs:
     verbose: false
-    
+
 - script: './node_modules/.bin/gulp proj:publish'
   displayName: 'Run Gulp Task'
   workingDirectory: '$(Build.SourcesDirectory)'
 
 - task: UseDotNet@2
-  displayName: 'Use .NET SDK 6.x'
+  displayName: 'Use .NET SDK 8'
   inputs:
     packageType: sdk
-    version: '6.x'
+    version: '8.0.x
+    includePreviewVersions: true  # Only if you're using a preview version
 
 - script: './node_modules/.bin/node-sass Tailspin.SpaceGame.Web/wwwroot --output Tailspin.SpaceGame.Web/wwwroot'
   displayName: 'Compile Sass assets'
