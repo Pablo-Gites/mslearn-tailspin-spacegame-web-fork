@@ -32,8 +32,8 @@ steps:
     #version: '8.0.x'
     includePreviewVersions: true  # Only if youre using a preview version
 
-- #script: './node_modules/.bin/node-sass Tailspin.SpaceGame.Web/wwwroot --output Tailspin.SpaceGame.Web/wwwroot'
-  script: './node_modules/.bin/node-sass $(wwwrootDirscript) --output $(wwwrootDirscript)'
+#- script: './node_modules/.bin/node-sass Tailspin.SpaceGame.Web/wwwroot --output Tailspin.SpaceGame.Web/wwwroot'
+- script: './node_modules/.bin/node-sass $(wwwrootDirscript) --output $(wwwrootDirscript)'
   displayName: 'Compile Sass assets'
 
 - script: 'echo "$(Build.DefinitionName), $(Build.BuildId), $(Build.BuildNumber)" > buildinfo.txt'
