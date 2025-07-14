@@ -1,0 +1,1 @@
+./node_modules/.bin/node-sass $(wwwrootDirscript) --output $(wwwrootDirscript)
