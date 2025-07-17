@@ -4,6 +4,10 @@ trigger:
 pool:
   vmImage: 'ubuntu-20.04'
 
+steps:
+  - script: echo "🔥 THIS IS MY FORK @ $(Build.SourceVersion)"
+    displayName: 'Verify Correct YAML'
+
 variables:
   buildConfiguration: 'Release'
   wwwrootDir: 'Tailspin.SpaceGame.Web/wwwroot'
