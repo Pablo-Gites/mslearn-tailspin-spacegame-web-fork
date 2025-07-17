@@ -4,16 +4,15 @@ trigger:
 pool:
   vmImage: 'ubuntu-20.04'
 
-steps:
-  - script: echo "🔥 THIS IS MY FORK @ $(Build.SourceVersion)"
-    displayName: 'Verify Correct YAML'
-
 variables:
   buildConfiguration: 'Release'
   wwwrootDir: 'Tailspin.SpaceGame.Web/wwwroot'
   dotnetSdkVersion: '6.x'
 
 steps:
+- script: echo "🔥 THIS IS MY FORK @ $(Build.SourceVersion)"
+  displayName: 'Verify Correct YAML'
+
 - task: UseDotNet@2
   displayName: 'Use .NET SDK $(dotnetSdkVersion)'
   inputs:
