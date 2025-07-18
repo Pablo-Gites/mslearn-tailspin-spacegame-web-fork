@@ -4,7 +4,7 @@ trigger:
       - feature/main
 
 pool:
-  vmImage: ubuntu-20.04
+  name: Azure Pipelines
 
 steps:
   - script: echo "✅ Hello from $(Build.Repository.Name) @ $(Build.SourceBranchName)"
