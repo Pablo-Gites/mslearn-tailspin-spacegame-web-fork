@@ -1,0 +1,15 @@
+[2025-09-06 22:03:33-5013] --------whoami--------
+vscode
+[2025-09-06 22:03:33-5763] --------whoami--------
+[2025-09-06 22:03:33-5774] Waiting for Agent.Listener (5359) to complete
+[2025-09-06 22:03:33-5784] Process 5359 finished running
+[2025-09-06 22:03:33-5793] Sleep 1 more second to make sure process exited
+[2025-09-06 22:03:33-5814] move /workspaces/mslearn-tailspin-spacegame-web-fork/.devcontainer/bin /workspaces/mslearn-tailspin-spacegame-web-fork/.devcontainer/bin.4.258.1
+renamed '/workspaces/mslearn-tailspin-spacegame-web-fork/.devcontainer/bin' -> '/workspaces/mslearn-tailspin-spacegame-web-fork/.devcontainer/bin.4.258.1'
+[2025-09-06 22:03:33-7870] move /workspaces/mslearn-tailspin-spacegame-web-fork/.devcontainer/externals /workspaces/mslearn-tailspin-spacegame-web-fork/.devcontainer/externals.4.258.1
+renamed '/workspaces/mslearn-tailspin-spacegame-web-fork/.devcontainer/externals' -> '/workspaces/mslearn-tailspin-spacegame-web-fork/.devcontainer/externals.4.258.1'
+[2025-09-06 22:03:33-7946] Create junction bin folder
+[2025-09-06 22:03:34-4173] Create junction externals folder
+[2025-09-06 22:03:34-4215] Update succeed
+[2025-09-06 22:03:34-4236] Rename /workspaces/mslearn-tailspin-spacegame-web-fork/.devcontainer/_diag/SelfUpdate-20250906-220319.log to be /workspaces/mslearn-tailspin-spacegame-web-fork/.devcontainer/_diag/SelfUpdate-20250906-220319.log.succeed
+[2025-09-06 22:03:34-4273] Restarting interactive agent
