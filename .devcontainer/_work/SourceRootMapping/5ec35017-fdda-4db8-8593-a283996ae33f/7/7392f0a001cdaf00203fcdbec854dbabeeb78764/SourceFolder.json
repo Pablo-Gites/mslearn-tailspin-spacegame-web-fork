@@ -1,0 +1,26 @@
+﻿{
+  "build_artifactstagingdirectory": "4/a",
+  "agent_builddirectory": "4",
+  "collectionUrl": "https://dev.azure.com/PawelCO/",
+  "definitionName": "mslearn-tailspin-spacegame-web",
+  "repositoryTrackingInfo": [
+    {
+      "identifier": "self",
+      "repositoryType": "Git",
+      "repositoryUrl": "https://PawelCO@dev.azure.com/PawelCO/Space%20Game%20-%20web%20-%20Tests/_git/tailspin-spacegame-web",
+      "sourcesDirectory": "4/s/tailspin-spacegame-web"
+    }
+  ],
+  "fileFormatVersion": 3,
+  "lastRunOn": "09/06/2025 23:28:04 +00:00",
+  "repositoryType": "Git",
+  "lastMaintenanceAttemptedOn": "",
+  "lastMaintenanceCompletedOn": "",
+  "build_sourcesdirectory": "4/s",
+  "common_testresultsdirectory": "4/TestResults",
+  "collectionId": "5ec35017-fdda-4db8-8593-a283996ae33f",
+  "definitionId": "7",
+  "hashKey": "7392f0a001cdaf00203fcdbec854dbabeeb78764",
+  "repositoryUrl": "https://PawelCO@dev.azure.com/PawelCO/Space%20Game%20-%20web%20-%20Tests/_git/tailspin-spacegame-web",
+  "system": "build"
+}
