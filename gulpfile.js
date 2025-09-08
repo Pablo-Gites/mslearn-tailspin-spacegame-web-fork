@@ -38,5 +38,7 @@ gulp.task("min:css", () => {
 
 gulp.task("min", gulp.series(["min:js", "min:css"]));
 
+gulp.task('proj:publish', gulp.series('min'))
+
 // A 'default' task is required by Gulp v4
 gulp.task("default", gulp.series(["min"]));
