@@ -11,6 +11,20 @@ const paths = {
   webroot: "./Tailspin.SpaceGame.Web/wwwroot/"
 };
 
+const fs = require('fs');
+
+gulp.task("compile:sass", done => {
+  const sassPath = paths.webroot + "scss";
+  if (!fs.existsSync(sassPath)) {
+    console.warn("⚠️ SCSS folder not found. Skipping Sass compilation.");
+    return done();
+  }
+
+  return gulp.src(sassPath + "/**/*.scss")
+    .pipe(sass.sync().on("error", sass.logError))
+    .pipe(gulp.dest(paths.webroot + "css"));
+});
+
 paths.js = paths.webroot + "js/**/*.js";
 paths.minJs = paths.webroot + "js/**/*.min.js";
 paths.css = paths.webroot + "css/**/*.css";
