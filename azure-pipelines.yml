@@ -2,14 +2,12 @@ trigger:
 - '*'
 
 pool:
-  vmImage: 'ubuntu-20.04'
-  demands:
-  - npm
+ name: Default
 
 variables:
   buildConfiguration: 'Release'
   wwwrootDir: 'Tailspin.SpaceGame.Web/wwwroot'
-  dotnetSdkVersion: '6.x'
+  dotnetSdkVersion: '8.x'
 
 steps:
 - task: UseDotNet@2
@@ -21,20 +19,37 @@ steps:
   inputs:
     versionSpec: '5.9.1'
 
-- task: Npm@1
-  displayName: 'Run npm install'
+- task: Cache@2
   inputs:
-    verbose: false
+    key: 'npm | "$(Agent.OS)" | package-lock.json'
+    restoreKeys: |
+      npm | "$(Agent.OS)"
+    path: $(Build.SourcesDirectory)/node_modules
+  displayName: 'Cache node_modules'
 
-- script: './node_modules/.bin/node-sass $(wwwrootDir) --output $(wwwrootDir)'
-  displayName: 'Compile Sass assets'
+- script: npm ci
+  displayName: 'Install Dependencies'
 
-- task: gulp@1
-  displayName: 'Run gulp tasks'
+- script: npx gulp proj:publish
+  displayName: 'Run Full Gulp Publish Task'
 
 - script: 'echo "$(Build.DefinitionName), $(Build.BuildId), $(Build.BuildNumber)" > buildinfo.txt'
   displayName: 'Write build info'
-  workingDirectory: $(wwwrootDir)
+  workingDirectory: '$(wwwrootDir)'
+
+- task: NuGetCommand@2
+  displayName: 'Restore project dependencies'
+  inputs:
+    command: 'restore'
+    restoreSolution: '**/*.sln'
+    feedsToUse: 'select'
+    vstsFeed: '$(System.TeamProject)/Tailspin.SpaceGame.Web.Models'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Restore project dependencies'
+  inputs:
+    command: 'restore'
+    projects: '**/*.csproj'
 
 - task: DotNetCoreCLI@2
   displayName: 'Build the project - $(buildConfiguration)'
@@ -43,6 +58,13 @@ steps:
     arguments: '--no-restore --configuration $(buildConfiguration)'
     projects: '**/*.csproj'
 
+- task: DotNetCoreCLI@2
+  displayName: 'Install .NET tools from local manifest'
+  inputs:
+    command: custom
+    custom: tool
+    arguments: 'restore'
+    
 - task: DotNetCoreCLI@2
   displayName: 'Publish the project - $(buildConfiguration)'
   inputs:
