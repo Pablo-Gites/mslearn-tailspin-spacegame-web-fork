@@ -44,7 +44,8 @@ steps:
     restoreSolution: '**/*.sln'
     feedsToUse: 'select'
     vstsFeed: '$(System.TeamProject)/Tailspin.SpaceGame.Web.Models'
-
+    msbuildVersion: 'latest'
+    
 - task: DotNetCoreCLI@2
   displayName: 'Restore project dependencies'
   inputs:
