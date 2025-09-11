@@ -42,6 +42,7 @@ steps:
   inputs:
     command: 'restore'
     projects: '**/*.sln'
+    feedsToUse: 'config'
 
 - task: DotNetCoreCLI@2
   displayName: 'Build the project - $(buildConfiguration)'
