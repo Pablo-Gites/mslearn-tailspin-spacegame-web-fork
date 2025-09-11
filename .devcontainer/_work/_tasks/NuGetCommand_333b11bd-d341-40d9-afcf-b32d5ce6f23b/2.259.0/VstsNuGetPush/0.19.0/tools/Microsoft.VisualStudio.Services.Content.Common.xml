@@ -1,0 +1,1342 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.VisualStudio.Services.Content.Common</name>
+    </assembly>
+    <members>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.AsyncEnumeratorWithCursorExtensions.WithCursor``2(Microsoft.VisualStudio.Services.Content.Common.IAsyncEnumerator{``0},System.Func{``0,``1},``1)">
+            <remarks>
+            The caller has to guarantee that mkCursor actually generates a valid cursor value.
+            (cf. the documentation of IAsyncEnumeratorWithCursor in IAsyncEnumerator.cs for the
+            definition of a valid cursor.)
+            </remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.AsyncEnumeratorWithCursorExtensions.WithCursor``1(Microsoft.VisualStudio.Services.Content.Common.IAsyncEnumerator{``0},``0)">
+            <remarks>
+            The caller has to guarantee that an item in the enumeration also is a valid cursor
+            for the enumeration.
+            (cf. the documentation of IAsyncEnumeratorWithCursor in IAsyncEnumerator.cs for the
+            definition of a valid cursor.)
+            </remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.AsyncEnumeratorWithCursorExtensions.WithCursor``3(Microsoft.VisualStudio.Services.Content.Common.IAsyncEnumerator{``0},System.Func{``0,``2},System.Func{``0,``1},``2)">
+            <remarks>
+            The caller has to guarantee that mkCursor actually generates a valid cursor value.
+            (cf. the documentation of IAsyncEnumeratorWithCursor in IAsyncEnumerator.cs for the
+            definition of a valid cursor.)
+            </remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.AsyncEnumeratorWithCursorExtensions.CollectUnordered``3(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{``2,Microsoft.VisualStudio.Services.Content.Common.IAsyncEnumerator{``0}}},System.Nullable{System.Int32},System.Func{``0,``1})">
+            <summary>
+            Perform CollectUnordered and create a composite cursor. The components of the cursor
+            are indexed by the keys of the input enumeration. The components of the cursor are computed from
+            the enumerated values of the respective component with the supplied function. The cursor is 
+            initialized as `new CompositeCursor()`.
+            </summary>
+            <typeparam name="TValue">Type of enumerated items</typeparam>
+            <typeparam name="TCursor">Type of components of the composite cursor</typeparam>
+            <typeparam name="TId">Type of component indexes</typeparam>
+            <param name="enumerators">Indexed enumeration of input IAsyncEnumerators</param>
+            <param name="boundedCapacity">concurrency bound</param>
+            <param name="mkCursor">A function that given an enumerated item creates a cursor component</param>
+            <returns>Returns an IAsyncEnumeratorWithCursor</returns>
+            <remarks>
+            The caller has to guarantee that mkCursor actually generates a valid cursor value for the
+            respective component.
+            (cf. the documentation of IAsyncEnumeratorWithCursor in IAsyncEnumerator.cs for the
+            definition of a valid cursor.)
+            </remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.AsyncEnumeratorWithCursorExtensions.CollectUnordered``3(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{``2,Microsoft.VisualStudio.Services.Content.Common.IAsyncEnumeratorWithCursor{``0,``1}}},System.Nullable{System.Int32})">
+            <summary>
+            Perform CollectUnordered and create a composite cursor. The components of the cursor 
+            are indexed by the keys of the input enumeration. The components of the cursor are the 
+            cursors of the respective components. 
+            </summary>
+            <typeparam name="TValue">Type of enumerated items</typeparam>
+            <typeparam name="TCursor">Type of components of the composite cursor</typeparam>
+            <typeparam name="TId">Type of component indexes</typeparam>
+            <param name="enumerators">enumeration of IAsyncEnumerators</param>
+            <param name="boundedCapacity">concurrency bound</param>
+            <returns>Returns an IAsyncEnumeratorWithCursor</returns>
+            <remarks>
+            The caller has to guarantee that an item in the enumeration also is a valid cursor component
+            for the enumeration.
+            (cf. the documentation of IAsyncEnumeratorWithCursor in IAsyncEnumerator.cs for the
+            definition of a valid cursor.)
+            </remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.AsyncEnumeratorWithCursorExtensions.CollectUnordered``2(System.Collections.Generic.IEnumerable{Microsoft.VisualStudio.Services.Content.Common.IAsyncEnumerator{``0}},System.Nullable{System.Int32},System.Func{``0,``1})">
+            <summary>
+            Perform CollectUnordered and create a composite cursor. The componensts of the cursor are indexd
+            by the index of the respective component in the input enumeration of IAsyncEnumerators.
+            The components of the cursor are computed from the enumerated values of the respective component
+            with the supplied function. The cursor is initialized as `new CompositeCursor()`.
+            </summary>
+            <typeparam name="TValue">Type of enumerated items</typeparam>
+            <typeparam name="TCursor">Type of components of the composite cursor</typeparam>
+            <param name="enumerators">enumeration of IAsyncEnumerators</param>
+            <param name="boundedCapacity">concurrency bound</param>
+            <param name="mkCursor">A function that given an enumerated item creates a cursor component</param>
+            <returns>Returns an IAsyncEnumeratorWithCursor</returns>
+            <remarks>
+            The caller has to guarantee that mkCursor actually generates a valid cursor value for the
+            respective component.
+            (cf. the documentation of IAsyncEnumeratorWithCursor in IAsyncEnumerator.cs for the
+            definition of a valid cursor.)
+            </remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.AsyncEnumeratorWithCursorExtensions.CollectUnordered``2(System.Collections.Generic.IEnumerable{Microsoft.VisualStudio.Services.Content.Common.IAsyncEnumeratorWithCursor{``0,``1}},System.Nullable{System.Int32})">
+            <summary>
+            Perform CollectUnordered and create a composite cursor. The components of the cursor are indexed 
+            by the index of the respective component in the input enumeration of IAsyncEnumerators.
+            The components of the cursor are the cursors of the respective components. 
+            </summary>
+            <typeparam name="TValue">Type of enumerated items</typeparam>
+            <typeparam name="TCursor">Type of components of the composite cursor</typeparam>
+            <param name="enumerators">enumeration of IAsyncEnumerators</param>
+            <param name="boundedCapacity">concurrency bound</param>
+            <returns>Returns an IAsyncEnumeratorWithCursor</returns>
+            <remarks>
+            The caller has to guarantee that an item in the enumeration also is a valid cursor component
+            for the enumeration.
+            (cf. the documentation of IAsyncEnumeratorWithCursor in IAsyncEnumerator.cs for the
+            definition of a valid cursor.)
+            </remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.AsyncEnumeratorWithCursorExtensions.CollectUnordered``3(Microsoft.VisualStudio.Services.Content.Common.CompositeCursor{``2,``1},System.Func{``2,``1,Microsoft.VisualStudio.Services.Content.Common.IAsyncEnumeratorWithCursor{``0,``1}},System.Nullable{System.Int32})">
+            <summary>
+            Create IAsyncEnumeratorsWithCursor from an CompositeCursor and collect the results of 
+            the enumeration unorded in a single AsyncEnumeratorWithCursor.
+            </summary>
+            <typeparam name="TValue">Type of enumerated items</typeparam>
+            <typeparam name="TCursor">Type of components of the composite cursor</typeparam>
+            <typeparam name="TId">Type of component indexes</typeparam>
+            <param name="startCursor">The start cursor for the enumeration</param>
+            <param name="factory">A function that creates an IAsyncEnumeratorWithCursor for a single cursor component</param>
+            <param name="boundedCapacity">concurrency bound</param>
+            <returns>Returns an IAsyncEnumerator that collects items from the component enumerations unordered</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.AsyncEnumeratorWithCursorExtensions.ToAsyncEnumerator``2(``1,System.Func{``1,Microsoft.VisualStudio.Services.Content.Common.IAsyncEnumeratorWithCursor{``0,``1}})">
+            <summary>
+            Create an IAsyncEnumerator that starts from a given cursor.
+            </summary>
+            <typeparam name="TValue">Type of enumerated items</typeparam>
+            <typeparam name="TCursor">Type of components of the composite cursor</typeparam>
+            <param name="cursor">The start cursor for the enumeration</param>
+            <param name="factory">A function that creates an IAsyncEnumerator from the given cursor.</param>
+            <returns>Retursn an IAsyncEnumerator that starts from the given cursor</returns>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.Authentication.CredentialProvider.CredentialProviderLoader">
+            <summary>
+            Provides a common facility for locating extensions.  Provides a credential lookup 
+            similar to the one supported by Nuget.   
+            Nuget offers multiple mechanisms to register the credential provider, many related to 
+            its nuget-specific configuration files.  
+            Currently, we only allow discovery of credential providers based on environment variables.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Authentication.CredentialProvider.CredentialProviderLoader.FindCredentialProviders">
+            <summary>
+            Find paths to all credential providers
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Authentication.CredentialProvider.CredentialResponse.#ctor(Microsoft.VisualStudio.Services.Content.Common.Authentication.CredentialProvider.RequestStatus)">
+            <summary>
+            Creates a Credential response object without giving credentials.
+            Note should only be done if the status is ProviderNotApplicable.
+            </summary>
+            <param name="status"></param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Authentication.CredentialProvider.CredentialResponse.#ctor(System.Net.ICredentials,Microsoft.VisualStudio.Services.Content.Common.Authentication.CredentialProvider.RequestStatus)">
+            <summary>
+            Crates a credential response object
+            </summary>
+            <param name="credentials"></param>
+            <param name="status"></param>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.Authentication.CredentialProvider.PluginCredentialProvider">
+            <summary>
+            Describes an external [plugin] credential provider.  The input/output contract is modeled
+            after Nuget's credential provider.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.Authentication.CredentialProvider.PluginCredentialProvider.PluginCredentialRequest">
+            <summary>
+            Request data passed to plugin credential provider applications via command line.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.Authentication.CredentialProvider.PluginCredentialProvider.PluginCredentialResponse">
+            <summary>
+            Response data returned from plugin credential provider applications via std-out.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Content.Common.Authentication.CredentialProvider.PluginCredentialProvider.Description">
+            <summary>
+            Unique identifier of this credential provider
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Content.Common.Authentication.CredentialProvider.PluginCredentialProvider.Path">
+            <summary>
+            Path to plugin credential provider executable.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Microsoft.VisualStudio.Services.Content.Common.Authentication.CredentialProvider.PluginCredentialProvider.#ctor(System.String)" -->
+        <member name="F:Microsoft.VisualStudio.Services.Content.Common.Authentication.VsoAadConstants.ProdDefaultAuthority">
+            <summary>
+            Default authority for use with AuthenticationContext constructor
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.Content.Common.Authentication.VsoAadConstants.Resource">
+            <summary>
+            VSO service principal for use with AuthenticationContext.AcquireToken*
+            </summary>
+            <remarks>
+            Private value also at:
+            1) \DevTestLabs\Client\Common\DevTestLabsConstants.cs
+            2) \Tfs\ExtendedClient\Framework\Client\AadSettings.cs
+            3) \VSIntegration\Client\Git\Controls\Commits\VsUserAccountExtensions.cs
+            4) \VSIntegration\Client\Nuget\CredentialProvider\InteractiveLoginProvider.cs
+            5) \Vssf\InteractiveClient\Client\VssAadSettings.cs
+            6) \Vssf\Sdk\Server\Authentication\AadAuthUrlUtility.cs
+            </remarks>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.Content.Common.Authentication.VsoAadConstants.Client">
+            <summary>
+            Visual Studio IDE client ID originally provisioned by Azure Tools for use with AuthenticationContext.AcquireToken*
+            </summary>
+            <remarks>
+            Private value also at:
+            1) \Tfs\ExtendedClient\Framework\Client\AadSettings.cs,   Microsoft.TeamFoundation.Client.AadSettings.Client
+            2) \Vssf\InteractiveClient\Client\VssAadSettings.cs,      Microsoft.VisualStudio.Services.Client.VssAadSettings.Client
+            3) \Vssf\Sdk\CloudConfiguration\AuthenticationManager.cs, Microsoft.VisualStudio.Services.CloudConfiguration.AuthenticationManager.c_vssClientId
+            </remarks>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.Authentication.VsoCredentialHelper">
+            <summary>
+            Creates VssCredentials from AAD (new and existing tokens), VSS PAT, and VSS prompt
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Authentication.VsoCredentialHelper.GetCredentials(System.Uri,System.Boolean,System.Security.SecureString,System.String,Microsoft.VisualStudio.Services.Content.Common.Authentication.LocalTokenCacheArgs)">
+            <summary>
+            Creates VssCredentials for AAD, VSS PAT, or VSS Prompt
+            </summary>
+            <param name="useAad">True to authenticate with Azure Active Directory</param>
+            <param name="pat">Not null to authenticate with VSTS Personal Access Token</param>
+            <param name="aadTokenFile">
+            An optional file for AAD authentication which contains an encrypted AAD token.
+            CloudBuild uses this authentication mechanism for download.
+            The AAD token file is generated as follows:
+            Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext adAuthContext = callersExistingContext;
+            byte[] serialized = adAuthContext.TokenCache.Serialize();
+            byte[] encrypted = System.Security.Cryptography.ProtectedData.Protect(serialized, null, DataProtectionScope.CurrentUser);
+            File.WriteAllBytes(aadTokenFile, encrypted);
+            </param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Authentication.VsoCredentialHelper.GetCredentials(System.Uri,System.Boolean,System.Byte[],System.Security.SecureString,Microsoft.VisualStudio.Services.Content.Common.Authentication.LocalTokenCacheArgs)">
+            <summary>
+            Creates VssCredentials for AAD, VSS PAT, or VSS Prompt
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Authentication.VsoCredentialHelper.GetCredentialsAsync(System.Uri,System.Boolean,System.Byte[],System.Security.SecureString,Microsoft.VisualStudio.Services.Content.Common.Authentication.LocalTokenCacheArgs)">
+            <summary>
+            Asynchronously creates VssCredentials for AAD, VSS PAT, or VSS Prompt
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Authentication.VsoCredentialHelper.GetAADCredentials(System.Byte[],Microsoft.VisualStudio.Services.Content.Common.Authentication.VsoAadAuthority)">
+            <summary>
+            Creates VssCredentials for AAD
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Authentication.VsoCredentialHelper.GetAADCredentialsAsync(System.Byte[],Microsoft.VisualStudio.Services.Content.Common.Authentication.VsoAadAuthority)">
+            <summary>
+            Asynchronously creates VssCredentials for AAD
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Authentication.VsoCredentialHelper.AcquireTokenSilentInternalAsync(System.Byte[],Microsoft.VisualStudio.Services.Content.Common.Authentication.VsoAadAuthority)">
+            <summary>
+            Wraps AadAuthenticationContext.AcquireTokenSilent with ProtectedData decryption for the AAD credential token.
+            </summary>
+            <param name="verboseLog">An action associated with verbose logging.</param>
+            <param name="credBytes">A protectedData token cache that the authentication context will use.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.AutoKillProcessHandle">
+            <summary>
+            Kills an associated Process instance on Dispose
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.AutoKillProcessHandle.JobHandle">
+            <summary>
+            Wraps a Win32 HANDLE for a job.
+            Finalizer is guaranteed to be called by GC when AppDomain unload to prevent leaks.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.AutoKillProcessHandle.JobHandle.#ctor">
+            <summary>
+            Called by P/Invoke when returning SafeHandles. Sets handle to invalid by default.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.AutoKillProcessHandle.SetExtendedInformationJobObject(Microsoft.VisualStudio.Services.Content.Common.AutoKillProcessHandle.JobHandle,Microsoft.VisualStudio.Services.Content.Common.AutoKillProcessHandle.JOBOBJECTINFOCLASS,Microsoft.VisualStudio.Services.Content.Common.AutoKillProcessHandle.JOBOBJECT_EXTENDED_LIMIT_INFORMATION@,System.UInt32)">
+            <param name="hJob">
+            [in] Handle to the job whose limits are being set. The CreateJobObject or OpenJobObject function returns this handle. 
+            The handle must have the JOB_OBJECT_SET_ATTRIBUTES access right.
+            </param>
+            <param name="JobObjectInfoClass">[in] Information class for the limits to be set.</param>
+            <param name="lpJobObjectInfo">[in] Limits to be set for the job. The format of this data depends on the value of JobObjectInfoClass.</param>
+            <param name="cbJobObjectInfoLength">[in] Size of the job information being set, in bytes.</param>
+            <returns>If the function succeeds, the return value is true, otherwise false.</returns>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.EquatableTuple`2">
+            <summary>
+            A tuple with IEquatable constraints on its components. The
+            default equality comparer for this values of this class uses the 
+            default equality comparer of the components which uses the IEquality
+            constraint and doesn't use the object equality comparer.
+            </summary>
+            <typeparam name="T1"></typeparam>
+            <typeparam name="T2"></typeparam>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.FileVersionHelpers`1.GetAssemblyVersionAndComments">
+            <remarks>
+            Across different assemblies from the same build these will be slightly different as we add a date time stamp
+            </remarks>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.JsonNormalizer">
+            <summary>
+            Normalize JSON by sorting properties in objects, stripping white space and omitting null properties.
+            </summary>
+            <remarks>
+            This class is meant for testing purposes. If you need some of it's functionality for production
+            code, please, carefully review the implementation to ensure it fits your needs.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.JsonWriterStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+            <summary>
+            https://blogs.msdn.microsoft.com/pfxteam/2011/06/27/using-tasks-to-implement-the-apm-pattern/
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.ULongJsonConverter">
+            <summary>
+            JSON converter for ULong. The version of Newtonsoft JSON that we currently use (as of 2016-05-25) casts strings
+            to numbers and rounds floats to integers. We don't want that behavior.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.Kvp">
+            <summary>
+            Helper method for more concise code: Kvp.Create(...) can infer types where as new KeyValuePair[x,y] can't
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.Operations.SecureStringConverter">
+            <summary>
+            Provides default conversion from a string (command line argument value) to SecureString.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.ReaderWriterLockSlimExtensionMethods.ReadLockToken">
+            <summary>
+            Helper class so we can have using() blocks for reader-writer locks
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.ReaderWriterLockSlimExtensionMethods.WriteLockToken">
+            <summary>
+            Helper class so we can have using() blocks for reader-writer locks
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.IReadOnlySet`1">
+            <summary>
+            A very restricted interface for checking set-containment.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.ServiceInstanceTypes">
+            <summary>
+            As of 6/24/2016, Artifact's ServiceInstanceTypes are only referenced by:
+            1) FrameworkBlobStore.GetBlobStoreServiceUri()
+            2) VssSim assemblies for calls to SimulationContext.GetResourceUri()
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Microsoft.VisualStudio.Services.Content.Common.ThreadPoolHelper" -->
+        <member name="F:Microsoft.VisualStudio.Services.Content.Common.ThreadPoolHelper.Constants.ThreadsPerCore8">
+            <remarks>As of 8/31/2018: DropServiceClient, VssSim.exe</remarks>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.Content.Common.ThreadPoolHelper.Constants.ThreadsPerCore16">
+            <remarks>As of 8/31/2018: blobtest.exe, symbol.exe</remarks>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.Content.Common.ThreadPoolHelper.Constants.ThreadsPerCore180">
+            <remarks>As of 8/31/2018: PlatformBlobStore</remarks>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.Content.Common.ThreadPoolHelper.Constants.ThreadsPerCore2048">
+            <remarks>As of 8/31/2018: ItemStoreService, Packaging.ServiceShared.Threading.ThreadingExtension</remarks>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:Microsoft.VisualStudio.Services.Content.Common.ThreadPoolHelper.MaxMaxThreadCount" -->
+        <member name="F:Microsoft.VisualStudio.Services.Content.Common.ThreadPoolHelper.MaxToMinThreadCountRatio">
+            <summary>
+            The min value is mostly useful for handling cold start. Below this value the thread pool will create new threads without any throttling; 
+            above it the new thread will be created at a pace of 2 threads per second. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.ThreadPoolHelper.GetThreadCountSummary">
+            <summary>
+            Returns a loggable summary of the ThreadPool's worker and completion thread counts.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.ThreadPoolHelper.IncreaseThreadCounts(System.Int32,System.Int32)">
+            <summary>
+            Increases thread pool counts proportionally to the number of processors on the host up to a maximum of 32767 (aka 0x7FFF).
+            If the existing thread counts already exceed the values provided, then the existing values are retained.
+            </summary>
+            <param name="workerThreadsPerCore">Minimum worker threads per core</param>
+            <param name="completionThreadsPerCore">Minimum completion threads per core</param>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Content.Common.Tracing.AppTraceListener.DetailedMessageFormat">
+            <summary>
+            True to prepend the trace message with the TraceEventType (info, warn, error) and a timestamp.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Content.Common.Tracing.AppTraceListener.AppName">
+            <summary>
+            Returns the app name used in FormatMessage(), e.g. "Drop App"
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.Tracing.ArtifactServicesTraceSource">
+            <summary>
+            Base class for Trace sources for ArtifactServices based apps.
+            </summary>
+            <remarks>
+            Artifact Services based applications and client libraries should create concrete classes
+            based on this class and use them for logging.  
+            Apps should use the AddTraceListener method to add additional trace listeners so that the 
+            AppName property is properly set on the listeners (which should extend AppTraceListener) 
+            as opposed to directly adding to the Listeners collection.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Content.Common.Tracing.ArtifactServicesTraceSource.Instance">
+            <summary> Returns the singleton instance of the trace source. </summary>
+            <remarks> Derived classes should implement singleton static Instance which the implementation of this should return </remarks>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Content.Common.Tracing.ArtifactServicesTraceSource.AppName">
+            <summary>
+            Defaults to the process exe name
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Tracing.ArtifactServicesTraceSource.AddFileTraceListener(System.String)">
+            <summary>
+            Create a file-based trace source, outputting to a specified file.
+            </summary>
+            <param name="fullFileName"></param>
+            <returns>null if file cannot be open (not existing, lacking permission, etc.)</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Tracing.ArtifactServicesTraceSource.TraceEvent(System.Diagnostics.TraceEventType,System.Int32)">
+            <summary>
+            Writes a trace event message to the trace listeners in the System.Diagnostics.TraceSource.Listeners
+            </summary>
+            <param name="eventType">One of the enumeration values that specifies the event type of the trace data.</param>
+            <param name="id">A numeric identifier for the event.</param>
+            <remarks>new (hiding base) is necessary due to base being attributed with [Conditional("TRACE")] preventing it from fulfilling IAppTraceSource contract.</remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Tracing.ArtifactServicesTraceSource.TraceEvent(System.Diagnostics.TraceEventType,System.Int32,System.String)">
+            <summary>
+            Writes a trace event message to the trace listeners in the TraceSource.Listeners
+            </summary>
+            <param name="eventType">One of the enumeration values that specifies the event type of the trace data.</param>
+            <param name="id">A numeric identifier for the event.</param>
+            <param name="message">The trace message to write.</param>
+            <remarks>new (hiding base) is necessary due to base being attributed with [Conditional("TRACE")] preventing it from fulfilling IAppTraceSource contract.</remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Tracing.ArtifactServicesTraceSource.TraceEvent(System.Diagnostics.TraceEventType,System.Int32,System.String,System.Object[])">
+            <summary>
+            Writes a trace event message to the trace listeners in the TraceSource.Listeners
+            </summary>
+            <param name="eventType">One of the enumeration values that specifies the event type of the trace data.</param>
+            <param name="id">A numeric identifier for the event.</param>
+            <param name="format">A composite format string.</param>
+            <param name="args">An object array containing zero or more objects to format.</param>
+            <remarks>new (hiding base) is necessary due to base being attributed with [Conditional("TRACE")] preventing it from fulfilling IAppTraceSource contract.</remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Tracing.ArtifactServicesTraceSource.GetMessageAndExceptionText(System.Exception,System.String,System.Object[])">
+            <summary>
+            Concatenates the error message and exception text to ensure we output both in the same TraceEvent call.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Tracing.ArtifactServicesTraceSource.GetExceptionText(System.Exception)">
+            <summary>
+            Always returns the full exception details
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.Tracing.ConsoleMessageUtil">
+            <summary>
+            Use this class only when Tracer is not available.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Tracing.ConsoleMessageUtil.PrintErrorMessage(System.String,System.Object[])">
+            <summary>
+            Print a formatted error message to both standard error and diagnostic debug listener.
+            </summary>
+            <param name="format">The string format.</param>
+            <param name="args">The arguments to populate the format string with/</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Tracing.ConsoleMessageUtil.PrintErrorMessage(System.String)">
+            <summary>
+            Print an error message to both standard error and diagnostic debug listener.
+            </summary>
+            <param name="message">The message to write to standard error.</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Tracing.ConsoleMessageUtil.PrintWarningMessage(System.String)">
+            <summary>
+            Print an warning message to both standard output and diagnostic debug listener.
+            </summary>
+            <param name="message">The message to write.</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Tracing.ConsoleMessageUtil.PrintWarningMessage(System.String,System.Object[])">
+            <summary>
+            Print a formatted warning message to both standard output and diagnostic debug listener.
+            </summary>
+            <param name="format">The string format.</param>
+            <param name="args">The arguments to populate the format string with/</param>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Content.Common.Tracing.ConsoleTraceListener.CurrentTraceEventType">
+            <summary>
+            Gets or sets the current trace event type for the most recent Trace* method.
+            </summary>
+            <remarks>
+            This property is used to track what the trace event type was, so that we can use it in WriteLine to set the ConsoleColor.
+            We are using this tracking property instead of completely overriding the Trace* methods, because a lot of filtering and other default
+            behaviour that we do not want to override is done there.
+            The WriteLine method should reset this back to info/non-error so we don't accidentally write a bunch of things in Red/Yellow.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Tracing.ConsoleTraceListener.WriteColorMessage(System.String,System.ConsoleColor,System.Action{System.String})">
+            <summary>
+            Writes the color message.
+            </summary>
+            <param name="message">The message to write.</param>
+            <param name="color">The foreground color to write the message as.</param>
+            <param name="write">The write method to call.</param>
+            <remarks>write is an Action delegate as you may want to output the message to a different stream. The intention is that this should be a Console write method.</remarks>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Content.Common.Tracing.FileTraceListener.DetailedMessageFormat">
+            <summary>
+            Gets or sets a value indicating whether the verbose messaging format should be used.
+            </summary>
+            <remarks>File trace messaging should always use the verbose messaging format.</remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Tracing.FileTraceListener.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+            <remarks>Ensure the TextWriter is properly disposed.</remarks>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.Tracing.CallbackAppTraceSource">
+            <summary>
+            Redirects tracing to a callback if it meets or exceeds the minimum severity specified.
+            
+            Methods with a signature of (string format, params object[] args) allow the args to be null or empty because
+            the caller may have preformatted its messages or have traced messages which only look like .net format
+            strings. We chose this behavior in favor of imposing a check for missing parameters on the caller's tracing
+            because the purpose of this class is only to replay existing tracing, as faithfully as possible, to a callback.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Tracing.CallbackAppTraceSource.#ctor(System.Action{System.String},System.Diagnostics.SourceLevels,System.Boolean)">
+            <param name="traceMessageCallback">Callback which will receive traced messages</param>
+            <param name="leastSevereLevelToTrace">
+            Constrains tracing output to messages meeting or exceeding the given severity.
+            SourceLevel flag values are in descending order from most severe (Critical is 1) to least (Verbose = 31 and ActivityTracing = 65280),
+            so the filter will exclude messages with a flag value higher than the highest flag value specified here.
+            For example, a leastSevereLevelToTrace of Warning will exclude Information and Verbose traces.
+            </param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Tracing.CallbackAppTraceSource.#ctor(System.Action{System.String,System.Diagnostics.SourceLevels},System.Diagnostics.SourceLevels)">
+            <param name="traceMessageSeverityCallback">Callback which will receive both the traced message and its severity</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Tracing.HttpRequestExceptionExtensions.GetHttpMessageDetailsForTracing(System.Exception)">
+            <remarks>
+            Will return HTTP details on exceptions that have it supplied, otherwise the exception message is returned.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Tracing.IAppTraceSource.TraceEvent(System.Diagnostics.TraceEventType,System.Int32)">
+            <summary>
+                Writes a trace event message to the trace listeners in the System.Diagnostics.TraceSource.Listeners
+                collection using the specified event type and event identifier.
+            </summary>
+            <param name="eventType">One of the enumeration values that specifies the event type of the trace data.</param>
+            <param name="id">A numeric identifier for the event.</param>
+            <exception cref="T:System.ObjectDisposedException">An attempt was made to trace an event during finalization.</exception>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Tracing.IAppTraceSource.TraceEvent(System.Diagnostics.TraceEventType,System.Int32,System.String)">
+            <summary>
+                Writes a trace event message to the trace listeners in the System.Diagnostics.TraceSource.Listeners
+                collection using the specified event type, event identifier, and message.
+            </summary>
+            <param name="eventType">One of the enumeration values that specifies the event type of the trace data.</param>
+            <param name="id">A numeric identifier for the event.</param>
+            <param name="message">The trace message to write.</param>
+            <exception cref="T:System.ObjectDisposedException">An attempt was made to trace an event during finalization.</exception>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Tracing.IAppTraceSource.TraceEvent(System.Diagnostics.TraceEventType,System.Int32,System.String,System.Object[])">
+            <summary>
+               Writes a trace event to the trace listeners in the System.Diagnostics.TraceSource.Listeners
+                collection using the specified event type, event identifier, and argument array
+                and format.
+            </summary>
+            <param name="eventType">One of the enumeration values that specifies the event type of the trace data.</param>
+            <param name="id">A numeric identifier for the event.</param>
+            <param name="format">A composite format string (see Remarks) that contains text intermixed with zero
+                or more format items, which correspond to objects in the args array.</param>
+            <param name="args">An object array containing zero or more objects to format.</param>
+            <exception cref="T:System.ArgumentNullException">format is null</exception>
+            <exception cref="T:System.FormatException">format is invalid.-or- The number that indicates an argument to format is less
+                than zero, or greater than or equal to the number of specified objects to format.</exception>
+            <exception cref="T:System.ObjectDisposedException">An attempt was made to trace an event during finalization.</exception>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.Content.Common.Tracing.SafeStringFormat.SafeFormat">
+            <summary>
+            InvariantCulture by default to avoid:
+            Different DateTime formats (e.g. en-au instead of en-us) can cause a FormatException
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Tracing.SafeStringFormat.FormatSafe(System.IFormattable)">
+            <summary>
+            Formats IFormattables, such as interpolated strings, using CultureInfo.InvariantCulture.
+            For example, FormatSafe($"My interpolated string: {date}")
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.ArtifactBillingException">
+            <summary>
+            BillingException - Artifact billing related exceptions.
+            DEVNOTE: Ecommerce v2 APIs will provide template exceptions instead and then this can be removed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.ArtifactBillingException.#ctor">
+            <inheritdoc />
+            <summary>
+            Default const.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.ArtifactBillingException.#ctor(System.String,System.Exception)">
+            <summary>
+            Exception with message and ex.
+            </summary>
+            <param name="message">The message overload.</param>
+            <param name="ex">The exception</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.ArtifactBillingException.#ctor(System.String)">
+            <inheritdoc />
+            <summary>
+            Exception with just the message.
+            </summary>
+            <param name="message">The message overload.</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.ArtifactBillingException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            BillingException with serialization info.
+            </summary>
+            <param name="info">The serialization info.</param>
+            <param name="context">The context.</param>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.AsyncEnumeratorExtensions">
+            <remarks>
+            We need to be careful with ConfigureAwait and callbacks. See:
+            http://stackoverflow.com/questions/30036459/should-we-use-configureawaitfalse-in-libraries-that-call-async-callbacks
+            </remarks>>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.AsyncEnumeratorExtensions.SelectMany``2(Microsoft.VisualStudio.Services.Content.Common.IAsyncEnumerator{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}})">
+             <remarks>
+             The items in the inner IEnumerable sequences are produced synchronously. If
+             you want to produce the inner items asynchronously you can warp the result
+             of the selector in an asynchronous enumerator as follows:
+            
+             enumerator.SelectMany(x => new AsyncEnumerator(selector(x))
+             </remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.AsyncEnumeratorExtensions.WrapAndProbeAsync``1(Microsoft.VisualStudio.Services.Content.Common.IAsyncEnumerator{``0},System.Threading.CancellationToken)">
+            <summary>
+            Because AsyncEnumerator can be very lazy, there are times (e.g. before returning from a controller) that we want to validate the pipeline. 
+            To do so, we can just make sure that we get at least one valid result. If there is an error, it will throw here and get a helpful call stack.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.ForkedAsyncEnumerator`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.IAsyncEnumeratorWithCursor`2">
+            <summary>
+            A cursor is a compact representation of the already enumerated
+            values at any given time during the enumeration.
+            
+            The Cursor property must be defined whenever MoveNext would return true.
+            </summary>
+            <typeparam name="T">The type of the enumerated values</typeparam>
+            <typeparam name="TCursor">The type of the cursor</typeparam>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Content.Common.IAsyncEnumeratorWithCursor`2.Cursor">
+            <summary>
+            Always when MoveNext would return true, this function returns a value.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.AsyncFile.EIOControlCode">
+            <summary>
+            IO Control Codes
+            Useful links:
+                http://www.ioctls.net/
+                http://msdn.microsoft.com/en-us/library/windows/hardware/ff543023(v=vs.85).aspx
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Extensions.ToDictionaryFirstKeyWins``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2})">
+            <summary>
+            Creates a dictionary from a collection with the first key wins. If identical keys are present, an assertion is made to confirm that the values are the same.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Extensions.ToDictionaryFirstKeyWins``2(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{``0,``1}})">
+            <summary>
+            Creates a dictionary from a collection with the first key wins. If identical keys are present, an assertion is made to confirm that the values are the same.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Extensions.TryRemoveSpecific``2(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0,``1)">
+            <summary>
+                Attempt to remove an item from the ConcurrentDictionary.
+            </summary>
+            <remarks>
+                http://blogs.msdn.com/b/pfxteam/archive/2011/04/02/10149222.aspx
+            </remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Extensions.GetOrAdd``2(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0,``1,``1@)">
+            <summary>
+            https://blogs.msdn.microsoft.com/pfxteam/2012/02/04/building-a-custom-getoradd-method-for-concurrentdictionarytkeytvalue/
+            </summary>
+            <returns>True if added</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Extensions.GetOrAdd``2(System.Collections.Concurrent.ConcurrentDictionary{``0,``1},``0,System.Func{``0,``1},``1@)">
+            <summary>
+            https://blogs.msdn.microsoft.com/pfxteam/2012/02/04/building-a-custom-getoradd-method-for-concurrentdictionarytkeytvalue/
+            </summary>
+            <returns>True if added</returns>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.Content.Common.FileLink.CreateHardLinkStatus.Success">
+            <summary>
+            Succeeded.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.Content.Common.FileLink.CreateHardLinkStatus.FailedSinceDestinationIsOnDifferentVolume">
+            <summary>
+            Hardlinks may not span volumes, but the destination path is on a different volume.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.Content.Common.FileLink.CreateHardLinkStatus.FailedDueToPerFileLinkLimit">
+            <summary>
+            The source file cannot have more links. It is at the filesystem's link limit.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.Content.Common.FileLink.CreateHardLinkStatus.FailedSinceNotSupportedByFilesystem">
+            <summary>
+            The filesystem containing the source and destination does not support hardlinks.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.Content.Common.FileLink.CreateHardLinkStatus.FailedAccessDenied">
+            <summary>
+            AccessDenied was returned
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.Content.Common.FileLink.CreateHardLinkStatus.Failed">
+            <summary>
+            Generic failure.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.FileLink.Errno">
+            <summary>
+            Errorno codes
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.FileSystem">
+            <summary>
+            Physical file system.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.IFileSystem">
+            <summary>
+            Abstraction for the file system.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.IFileSystem.CreateDirectory(System.String)">
+            <summary>
+            Creates a directory.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.IFileSystem.DeleteFile(System.String)">
+            <summary>
+            Deletes a file.
+            </summary>
+            <param name="filePath">Path to file.</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.IFileSystem.DirectoryExists(System.String)">
+            <summary>
+            Returns whether a directory exists.
+            </summary>
+            <param name="directoryPath">Path to directory.</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.IFileSystem.EnumerateFiles(System.String,System.Boolean)">
+            <summary>
+            Returns a list of file names under the path specified, and optionally within all subdirectories.
+            </summary>
+            <param name="directoryFullPath">The directory to search</param>
+            <param name="recursiveSearch">Specifies whether the search operation should include only the current directory or all subdirectories</param>
+            <returns>Full file paths.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.IFileSystem.EnumerateDirectories(System.String,System.Boolean)">
+            <summary>
+            Returns a list of directory names under the path specified, and optionally all subdirectories
+            </summary>
+            <param name="directoryFullPath">The directory to search</param>
+            <param name="recursiveSearch">Specifies whether the search operation should include only the currect directory or all subdirectories</param>
+            <returns>A list of all subdirectories</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.IFileSystem.FileExists(System.String)">
+            <summary>
+            Returns whether a file exists.
+            </summary>
+            <param name="filePath">Path to file.</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.IFileSystem.GetRandomFileName">
+            <summary>
+            Geneerates a random name for a file.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.IFileSystem.GetTempFileFullPath">
+            <summary>
+            Gets the full path to a temporary file.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.IFileSystem.GetTempFullPath">
+            <summary>
+            Gets the full path to the temporary folder in the file system.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.IFileSystem.GetWorkingDirectory">
+            <summary>
+            Gets the full path to the working directory of the executing process. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.IFileSystem.OpenText(System.String)">
+            <summary>
+            Opens up a text reader to a specific file in the file system.
+            </summary>
+            <param name="filePath">Path to file.</param>
+            <returns>A text reader on the filde.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.IFileSystem.OpenStreamForFile(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare)">
+            <summary>
+            Opens stream given a file path.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.IFileSystem.OpenFileStreamForAsync(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare)">
+            <summary>
+            Opens file stream given a file path.
+            </summary>
+            <remarks>Some places require specifically a FileStream rather than a Stream.</remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.IFileSystem.ReadAllText(System.String)">
+            <summary>
+            Reads all text from a file.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.IFileSystem.ReadAllBytes(System.String)">
+            <summary>
+            Reads all bytes from a file.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.IFileSystem.WriteAllBytes(System.String,System.Byte[])">
+            <summary>
+            Creates a new file, writes the specified byte array to the file, and then closes the file. If the target file already exists, it is overwritten.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.IFileSystem.WriteAllText(System.String,System.String)">
+            <summary>
+            Writes all text to a file.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.ArtifactHttpClient.UpdateServicePointSettings">
+            <remarks>
+            Previously called from constructors in BlobStore2HttpClient, DedupStoreHttpClient, ItemHttpClientBase, SymbolHttpClient
+            </remarks>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.ArtifactHttpClientFactory">
+            <summary>
+            Retain and apply configuration to create derivations of VssHttpClientBase including credentials, timeouts, retry options, and tracing.
+            Also verifies client connection authorization.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.ArtifactHttpClientFactory.#ctor(Microsoft.VisualStudio.Services.Content.Common.Tracing.IAppTraceSource,Microsoft.VisualStudio.Services.Common.VssCredentials,System.Nullable{System.TimeSpan},System.Threading.CancellationToken,Microsoft.VisualStudio.Services.Common.VssHttpRetryOptions)">
+            <summary>
+            Root and Unit Test constructor
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.ArtifactHttpClientFactory.CreateVssHttpClient``2(System.Uri)">
+            <summary>
+            For client types known at designtime
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.ArtifactHttpClientFactory.CreateVssHttpClient(System.Type,System.Type,System.Uri,Microsoft.VisualStudio.Services.Content.Common.ArtifactHttpRetryMessageHandler)">
+            <summary>
+            Unit tests only.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.ArtifactHttpClientFactory.VerifyConnectionInternal(Microsoft.VisualStudio.Services.Content.Common.IArtifactHttpClient,System.Boolean)">
+            <summary>
+            Internal method created for migration testing purposes.
+            retryOnNotFoundTestOnly param is set to true only in testing environment as it is the expected behavior
+            in migration to fail in the first try on 404 error and then succeed in the next retry attempt.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.ArtifactHttpClientFactory.CreateVssHttpClient(System.Type,System.Type,System.Uri)">
+            <summary>
+            For client types determined at runtime (e.g. blob client based on version)
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.ArtifactHttpClientFactory.VerifyConnection(Microsoft.VisualStudio.Services.Content.Common.IArtifactHttpClient)">
+            <summary>
+            Probes the specified client with an OPTIONS request.
+            If the probe fails with VssUnauthorizedException, then we assume the user's profile may not exist,
+            and we issue a request to SPS which will result in a profile creation attempt.
+            We then send a second OPTIONS request.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.ArtifactHttpClientFactory.VerifyConnectionAsync(Microsoft.VisualStudio.Services.Content.Common.IArtifactHttpClient)">
+            <summary>
+            Asynchronously probes the specified client with an OPTIONS request.
+            If the probe fails with VssUnauthorizedException, then we assume the user's profile may not exist,
+            and we issue a request to SPS which will result in a profile creation attempt.
+            We then send a second OPTIONS request.
+            </summary>
+            <remarks>
+            NOTE: Do note call this from inside a controller.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.ArtifactHttpClientFactory.CreateDelegatingHandlers(Microsoft.VisualStudio.Services.Content.Common.ArtifactHttpRetryMessageHandler)">
+            <remarks>
+            DelegatingHandlers are created for each client because they cannot be shared across HttpClient pipelines.
+            System.Net.Http.HttpClientFactory.CreatePipeline enforces this by expecting null for the InnerHandler property.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.ArtifactHttpRetryMessageHandler">
+            <summary>
+            Extends VssHttpRetryMessageHandler to provide an option to retry timeouts as well.
+            </summary>
+            <remarks>
+            CodeSync: Logic heavily lifted from VssHttpRetryMessageHandler base class which, unfortunately, wasn't quite 
+            customizable enough to allow retrying of custom exceptions and status codes that don't derive from HttpRequestException (i.e. TimeoutException)
+            Regarding Vss request settings:
+            1) Do use VssHttpRequestSettings or VssHttpRetryOptions, which are defined in Microsoft.VisualStudio.Services.Common.
+            2) Do NOT use VssClientHttpRequestSettings because:
+            2.1) VssClientHttpRequestSettings is defined as EditorBrowsableState.Never, which implies it's internal/legacy.
+            2.2) VssClientHttpRequestSettings is defined in the Vssf.InteractiveClient module, which we only want to depend on client-side (e.g. AppShared).
+            </remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.ArtifactHttpRetryMessageHandler.CreateHttpClientWithRetryHandler(Microsoft.VisualStudio.Services.Content.Common.Tracing.IAppTraceSource)">
+            <summary>
+            Returns a plain HttpClient with the vss-based retry DelegatingHandler used by the rest of the
+            code by applying similar logic from VssHttpClientBase constructor and VssHttpClientBase.BuildHandler
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.ArtifactHttpRetryMessageHandler.CreatePipeline(System.Net.Http.HttpMessageHandler,System.Collections.Generic.IEnumerable{System.Net.Http.DelegatingHandler})">
+            <summary>
+            Imported from ...\Microsoft.AspNet.WebApi.Client\lib\net45\System.Net.Http.Formatting.dll
+            because it's not in ...\Microsoft.AspNet.WebApi.Client\lib\portable-wp8+netcore45+net45+wp81+wpa81\System.Net.Http.Formatting.dll
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.AsyncHttpRetryHelper`1">
+            <summary>
+            An asynchronous retry helper that returns <see cref="T:System.Threading.Tasks.Task`1"/>.
+            This class is not thread-safe. There must be only a single active retry task for any instance of this class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.AsyncHttpRetryHelper`1.InvokeAsync(System.Func{System.Threading.Tasks.Task{`0}},System.Int32,Microsoft.VisualStudio.Services.Content.Common.Tracing.IAppTraceSource,System.Func{System.Exception,System.Boolean},System.Threading.CancellationToken,System.Boolean,System.String,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+            <summary>
+            Execute a Task with retries.
+            </summary>
+            <param name="taskGenerator">a task generator that can create the same task on retry</param>
+            <param name="maxRetries">the maximum of retries</param>
+            <param name="tracer">a tracer to log the retries</param>
+            <param name="canRetryDelegate">an optional delegate that can be used to determine if a retry should be performed, in case the default heuristics returns false</param>
+            <param name="cancellationToken">a cancellation token that can be used to abort the operation by the caller</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.AsyncHttpRetryHelper`1.InvokeAsync(System.Threading.CancellationToken)">
+            <summary>
+            Execute a Task with retries.
+            This method is not thread-safe. There must be only a single active retry task for any instance of this class.        
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.AsyncHttpRetryHelper`1.IsRetryable(System.Exception,System.Func{System.Exception,System.Boolean},System.Threading.CancellationToken)">
+            <summary>
+            Return true if the exception is considered to be retryable.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.AsyncHttpRetryHelper">
+            <summary>
+            An asynchronous retry helper that returns <see cref="T:System.Threading.Tasks.Task"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.AsyncHttpRetryHelper.InvokeAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int32,Microsoft.VisualStudio.Services.Content.Common.Tracing.IAppTraceSource,System.Threading.CancellationToken,System.Boolean,System.String)">
+            <summary>
+            Execute a Task with retries.
+            </summary>
+            <remarks>
+            This method will retry on 
+            <see cref="T:System.Net.Http.HttpRequestException"/> (if the status code indicates of a transient error or the inner exception is an <see cref="T:System.IO.IOException"/>), 
+            <see cref="T:System.TimeoutException"/>, 
+            <see cref="T:Microsoft.VisualStudio.Services.Common.VssServiceException"/>, 
+            and any exceptions considered to be transient by <see cref="M:Microsoft.VisualStudio.Services.Common.VssNetworkHelper.IsTransientNetworkException(System.Exception)"/>.
+            </remarks>
+            <param name="taskGenerator">a task generator that can create the same task on retry</param>
+            <param name="maxRetries">the maximum of retries</param>
+            <param name="tracer">a tracer to log the retries</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.AsyncHttpRetryHelper.InvokeAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int32,Microsoft.VisualStudio.Services.Content.Common.Tracing.IAppTraceSource,System.Func{System.Exception,System.Boolean},System.Threading.CancellationToken,System.Boolean,System.String)">
+            <summary>
+            Execute a Task with retries.
+            </summary>
+            <param name="taskGenerator">a task generator that can create the same task on retry</param>
+            <param name="maxRetries">the maximum of retries</param>
+            <param name="tracer">a tracer to log the retries</param>
+            <param name="canRetryDelegate">an optional delegate that can be used to determine if a retry should be performed, in case the default heuristics returns false</param>
+            <param name="cancellationToken">a cancellation token that can be used to abort the operation by the caller</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.AsyncHttpRetryHelper.InvokeVoidAsync(System.Func{System.Threading.Tasks.Task},System.Int32,Microsoft.VisualStudio.Services.Content.Common.Tracing.IAppTraceSource,System.Func{System.Exception,System.Boolean},System.Threading.CancellationToken,System.Boolean,System.String)">
+            <summary>
+            Execute a Task with retries.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.AsyncHttpRetryHelper.IsTransientException(System.Exception)">
+            <summary>
+            Check if an exception is transient. An <see cref="T:System.Net.Http.HttpRequestException"/> caused by <see cref="T:System.IO.IOException"/> is considered transient too.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.AsyncHttpRetryHelper.IsTransientException(System.Exception,Microsoft.VisualStudio.Services.Common.VssHttpRetryOptions,System.Nullable{System.Net.HttpStatusCode}@,System.Nullable{System.Net.WebExceptionStatus}@,System.Nullable{System.Net.Sockets.SocketError}@,System.Nullable{Microsoft.VisualStudio.Services.Common.WinHttpErrorCode}@,System.Nullable{Microsoft.VisualStudio.Services.Common.CurlErrorCode}@,System.Boolean)">
+            <summary>
+            An augmented version of transient exception heuristic analyzer.
+            </summary>
+            <remarks>
+            Thie method will also consider the following exceptions as transient issues: 
+            <see cref="T:System.Net.Http.HttpRequestException"/> where the HTTP code is 408, 502, 503 or 504; or where the inner exception is IOException,
+            <see cref="T:System.TimeoutException"/>,
+            <see cref="T:Microsoft.VisualStudio.Services.Common.VssServiceException"/>,
+            <see cref="T:System.IO.IOException"/> (only if <paramref name="includeIOException"/> is true. Note Retrying on HTTP client handler with this
+            kind of exception may not work since the IOException is thrown during the body tranmission while the handler has already returned once the 
+            headers are generated.)
+            </remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.AsyncHttpRetryHelper.IsServiceRequestExceptionTransient(System.Exception)">
+            <summary>
+            IsServiceRequestExceptionTransient - VssServiceResponseException's are the fallback
+            when the thrown exception is an InvalidOperationException or other generic .NET types.
+            In such cases, it isn't prudent to retry blindly and hence the filter below ensures that if
+            the exception is indeed of the type 'VssServiceResponseException' then the retries happen only
+            if the HTTPStatusCode is amongst the retryable ones.
+            </summary>
+            <param name="exception">The exception.</param>
+            <returns>True, if transient. False otherwise.</returns>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.IArtifactHttpClient">
+            <summary>
+            Base interface all ArtifactServices HttpClient classes should implement to enable use 
+            of shared client telemetry functionality.
+            </summary>
+            <remarks>
+            This will be extended during refactoring of client telemetry, currently supports the 
+            TelemetryEnvironmentHelper in AppShared module
+            </remarks>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Content.Common.IArtifactHttpClient.BaseAddress">
+            <remarks>Note BaseAddress is a member of VssHttpClientBase</remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.IArtifactHttpClient.SetTracer(Microsoft.VisualStudio.Services.Content.Common.Tracing.IAppTraceSource)">
+            <remarks>May only be called once</remarks>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.Locator">
+            <summary>
+            Represents a set of path segments that can be used in combination
+            as an identifier to locate content or metadata items and properties associated
+            with content in backing storage.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.Content.Common.Locator.SeparatorChar">
+            <summary>
+            Separator used when parsing a Locator from string and when constructing string representation of current object
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.Content.Common.Locator.DefaultPathSegmentComparisonType">
+            <summary>
+            During investigation each of the storage systems that we looked at
+            were case-sensitive on their content identifiers including
+            Artifactory, Maven, and Azure Storage.  We are preserving the concept
+            that identifiers/segments should be case-sensitive and that the exact casing
+            provided by the client itself is preserved.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Locator.#ctor(Microsoft.VisualStudio.Services.Content.Common.Locator,Microsoft.VisualStudio.Services.Content.Common.Locator)">
+            <summary>
+            Constructs a new instance of the <see cref="T:Microsoft.VisualStudio.Services.Content.Common.Locator"/> class
+            from the path segments of the provided Locators
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Locator.#ctor(System.Collections.Generic.IEnumerable{Microsoft.VisualStudio.Services.Content.Common.Locator})">
+            <summary>
+            Constructs a new instance of the <see cref="T:Microsoft.VisualStudio.Services.Content.Common.Locator"/> class
+            from the path segments of the provided Locators
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Locator.#ctor(System.String[])">
+            <summary>
+            Constructs a new instance of the <see cref="T:Microsoft.VisualStudio.Services.Content.Common.Locator"/> class
+            from the path segments provided
+            </summary>
+            <param name="pathSegments">Path segments defining the locator.</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Locator.#ctor(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Constructs a new instance of the <see cref="T:Microsoft.VisualStudio.Services.Content.Common.Locator"/> class
+            from the path segments provided
+            </summary>
+            <param name="pathSegments">Path segments defining the locator.</param>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Content.Common.Locator.Value">
+            <summary>
+            Gets the locator value.  This value is
+            a concatenation of all path segments associated with the locator
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Content.Common.Locator.PathSegments">
+            <summary>
+            Gets the Locator represented as a list of segments
+            </summary>
+            <returns>An IList (potentially empty) of path segments defining the Locator.</returns>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Content.Common.Locator.PathSegmentCount">
+            <summary>
+            Gets the count of path segments associated with the locator
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Locator.IsNullOrEmpty(Microsoft.VisualStudio.Services.Content.Common.Locator)">
+            <summary>
+            Determines if a Locator is null or empty
+            </summary>
+            <param name="locator"></param>
+            <returns><c>true</c> if Locator is null or has zero path segments, otherwise <c>false</c>.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Locator.Parse(System.String,System.String[])">
+            <summary>
+            Creates a locator from the delimited path using the delimiter specifications
+            provided
+            </summary>
+            <param name="delimitedPath">The delimited path from which to create the locator</param>
+            <param name="delimiters">The delimiters to use when splitting the segment values in the delimited path</param>
+            <returns>
+            Type:  <see cref="T:Microsoft.VisualStudio.Services.Content.Common.Locator"/>
+            A locator for the delimited path.
+            </returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="delimitedPath"/> is <see langword="null" />.</exception>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Locator.GetParent">
+            <summary>
+            Returns the parent locator
+            </summary>
+            <returns>
+            Type:  <see cref="T:Microsoft.VisualStudio.Services.Content.Common.Locator" />
+            The parent locator for the current locator instance.
+            </returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Locator.StartsWith(Microsoft.VisualStudio.Services.Content.Common.Locator,System.StringComparison)">
+            <summary>
+            Returns true/false whether the current locator path segments start
+            with the path segments defined in the comparison locator.
+            </summary>
+            <param name="other">The locator with which to compare</param>
+            <param name="comparison">Override default path comparison type.</param>
+            <returns>
+            True if the current locater path segments begin with the path segments
+            defined in the comparison locator.
+            </returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Locator.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>A string representation of a Locator</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Locator.CompareTo(Microsoft.VisualStudio.Services.Content.Common.Locator,System.StringComparison)">
+            <summary>
+            Performs a comparison of the current locator 
+            with another Locator.  
+            </summary>
+            <param name="other">A locator to compare with this locator.</param>
+            <param name="comparison">Override default path comparison type.</param>
+            <returns>
+            A value that indicates the relative order of the objects being compared. The
+            return value has the following meanings: 1) A return value less than zero means that
+            this object is less than the other parameter.  2) A return value of zero means that
+            this object is equal to other.  3) A return value greater than zero means that this 
+            object is greater than other.
+            </returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Locator.CompareTo(System.Object,System.StringComparison)">
+            <summary>
+            Performs a comparison of the current locator 
+            with another Locator.
+            </summary>
+            <param name="other">An object to compare with this locator.</param>
+            <param name="comparison">Override default path comparison type.</param>
+            <returns>
+            A value that indicates the relative order of the objects being compared. The
+            return value has the following meanings: 1) A return value less than zero means that
+            this object is less than the other parameter.  2) A return value of zero means that
+            this object is equal to other.  3) A return value greater than zero means that this 
+            object is greater than other.
+            </returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Locator.Equals(Microsoft.VisualStudio.Services.Content.Common.Locator,System.StringComparison)">
+            <summary>
+            Returns true/false whether the current Locator is equal to
+            the other Locator
+            </summary>
+            <param name="other">A locator to compare with this locator.</param>
+            <param name="comparison">Override default path comparison type.</param>
+            <returns>true if the current object is equal to the other parameter; otherwise, false.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Locator.Equals(System.Object,System.StringComparison)">
+            <summary>
+            Returns true/false whether the current locator is equal to the item
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Locator.GetHashCode">
+            <summary>
+            Returns a hash value unique to the path segments defined for
+            the locator.
+            </summary>
+            <returns>
+            A hash value created from the path segments of the locator
+            </returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.NumberConversionHelper.ConvertBytesToMegabytes(System.Int64)">
+            <summary>
+            Uses IEC definition of a megabyte, bytes*1000² (SI units). We went with this direction rather than the Windows explorer definition since this is used cross-platform.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.EquatableTaggedUnionValue`2">
+            <summary>
+            A TaggendUnionValue with an equatable instance, and equatable constraints for it's
+            parameters.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.EquatableTaggedUnionValue`3">
+            <summary>
+            A TaggendUnionValue with an equatable instance, and equatable constraints for it's
+            parameters.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.EquatableTaggedUnionValue`4">
+            <summary>
+            A TaggendUnionValue with an equatable instance, and equatable constraints for it's
+            parameters.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.ITaggedUnion`2">
+            <summary>
+            Tagged Union inspired by https://doc.rust-lang.org/book/enums.html
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.IllegalTargetBlockStateException">
+            <summary>
+            Indicates that the target block is in an invalid state when failing to receive an item. This can happen under certain circumstances:
+            1) the target block is bounded and the buffer is full;
+            2) a race condition happens so that when checking the completion state the original exception has not been set yet.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Microsoft.VisualStudio.Services.Content.Common.TargetBlockExtensions" -->
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.TargetBlockExtensions.PostOrThrow``1(System.Threading.Tasks.Dataflow.ITargetBlock{``0},``0,System.Threading.CancellationToken)">
+            <summary>
+            Throws <see cref="T:Microsoft.VisualStudio.Services.Content.Common.IllegalTargetBlockStateException"/> if the action block is in an invalid state when a new item is added. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.TargetBlockExtensions.SendOrThrowAsync``2(System.Threading.Tasks.Dataflow.ITargetBlock{``0},System.Threading.Tasks.Dataflow.ITargetBlock{``1},``0,System.Threading.CancellationToken)">
+            <summary>
+            Throws <see cref="T:Microsoft.VisualStudio.Services.Content.Common.IllegalTargetBlockStateException"/> if the action block is in an invalid state when a new item is added. 
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.TargetBlockExtensions.PostAllToUnboundedAndCompleteAsync``1(System.Threading.Tasks.Dataflow.ITargetBlock{``0},System.Collections.Generic.IEnumerable{``0},System.Threading.CancellationToken)">
+            <summary>
+            Posts all inputs to the targetBlock, marks the targetBlock complete, and returns the completion task of the targetBlock.
+            <b>WARNING</b>: as this method's name suggests, the action block must be unbounded.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.TargetBlockExtensions.SendAllAndCompleteSingleBlockNetworkAsync``1(System.Threading.Tasks.Dataflow.ActionBlock{``0},System.Collections.Generic.IEnumerable{``0},System.Threading.CancellationToken)">
+            <summary>
+            Sends all inputs to the actionBlock, marks the actionBlock as complete, and awaits completion of the actionBlock.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.TargetBlockExtensions.SendAllAndCompleteAsync``2(System.Threading.Tasks.Dataflow.ITargetBlock{``0},System.Collections.Generic.IEnumerable{``0},System.Threading.Tasks.Dataflow.ITargetBlock{``1},System.Threading.CancellationToken)">
+            <summary>
+            Sends all inputs to the targetBlock, marks the targetBlock as complete, and awaits completion of the targetBlock.
+            If during the course of sending inputs, a subsequent block in the network faults (due to an exception), then the exception will be thrown.
+            <b>WARNING</b>: if the action block is bounded, this method may flood the buffer and will have to wait indefinitely for vacancy to send more items in.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.TargetBlockExtensions.ThrowError``1(System.Threading.Tasks.Dataflow.ITargetBlock{``0},System.String,System.Threading.CancellationToken)">
+            <summary>
+            Drain the block, expose and throw the real error
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.TargetBlockExtensions.SendAsync``1(System.Threading.Tasks.Dataflow.ITargetBlock{``0},``0,System.Threading.CancellationToken,System.Object)">
+            <summary>
+            <see cref="F:Microsoft.VisualStudio.Services.Content.Common.TargetBlockExtensions.SendAsyncHangPatternExplanation"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.TargetBlockExtensions.SendAsync``1(System.Threading.Tasks.Dataflow.ITargetBlock{``0},``0,System.Threading.CancellationToken,System.String)">
+            <summary>
+            <see cref="F:Microsoft.VisualStudio.Services.Content.Common.TargetBlockExtensions.SendAsyncHangPatternExplanation"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.TargetBlockExtensions.SendAsync``1(System.Threading.Tasks.Dataflow.ITargetBlock{``0},``0,System.Object)">
+            <summary>
+            <see cref="F:Microsoft.VisualStudio.Services.Content.Common.TargetBlockExtensions.SendAsyncHangPatternExplanation"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.TargetBlockExtensions.SendAsync``1(System.Threading.Tasks.Dataflow.ITargetBlock{``0},``0,System.String)">
+            <summary>
+            <see cref="F:Microsoft.VisualStudio.Services.Content.Common.TargetBlockExtensions.SendAsyncHangPatternExplanation"/>
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.TaskSafety">
+            <summary>
+            Runs the task in the threadpool to prevent deadlocks
+            </summary>
+            <remarks>http://blogs.msdn.com/b/pfxteam/archive/2012/04/13/10293638.aspx</remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Resources.#cctor">
+            Creates the resource manager instance.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Resources.Get(System.String)">
+            Returns a localized string given a resource string name.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Resources.GetInt(System.String)">
+            Returns a localized integer given a resource string name.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Resources.GetBool(System.String)">
+            Returns a localized string given a resource string name.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Resources.Format(System.String,System.Object[])">
+            A little helper function to alleviate some typing associated with loading resources and
+            formatting the strings.  In DEBUG builds, it also asserts that the number of format
+            arguments and the length of args match.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Resources.InvalidHexString(System.Object)">
+            <summary>
+            Invalid hex string.  The string value provided {0} is not a valid hex string.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Resources.ArtifactBillingException">
+            <summary>
+            Artifact cannot be uploaded because max quantity has been exceeded or the payment instrument is invalid. https://aka.ms/artbilling for details.
+            </summary>
+        </member>
+    </members>
+</doc>

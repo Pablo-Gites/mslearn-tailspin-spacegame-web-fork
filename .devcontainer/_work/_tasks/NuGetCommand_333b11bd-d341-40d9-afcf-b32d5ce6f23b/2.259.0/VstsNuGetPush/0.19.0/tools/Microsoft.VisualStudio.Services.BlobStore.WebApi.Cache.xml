@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.VisualStudio.Services.BlobStore.WebApi.Cache</name>
+    </assembly>
+    <members>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Cache.DedupStoreHttpClientWithCache.ToDedupChunkContentHash(Microsoft.VisualStudio.Services.BlobStore.Common.DedupIdentifier)">
+            <summary>
+            There are three things we want to cache:
+                1) A single chunk: tagged in the cache with DedupChunk's algorithm ID.
+                2) A whole file that is comprised of multiple chunks: tagged with DedupNode's algorithm ID.
+                3) A node itself: These we tag as DedupChunk before storing in the cache because both chunks and nodes are SHA512[0..31]
+            The intended usage of this method is #1 and #3.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Cache.Resources.#cctor">
+            Creates the resource manager instance.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Cache.Resources.Get(System.String)">
+            Returns a localized string given a resource string name.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Cache.Resources.GetInt(System.String)">
+            Returns a localized integer given a resource string name.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Cache.Resources.GetBool(System.String)">
+            Returns a localized string given a resource string name.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Cache.Resources.Format(System.String,System.Object[])">
+            A little helper function to alleviate some typing associated with loading resources and
+            formatting the strings.  In DEBUG builds, it also asserts that the number of format
+            arguments and the length of args match.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Cache.Resources.BlobNotFoundException(System.Object)">
+            <summary>
+            The blob with id &apos;{0}&apos; could not be found.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Cache.Resources.ClientToolNoMatchingReleaseFound">
+            <summary>
+            No release could be found based on the provided information.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Cache.Resources.DedupInconsistentAttributeException(System.Object)">
+            <summary>
+            Unable to retrieve consistent attributes from dedup with id &apos;{0}&apos;. Different results are returned by two fetching operations in tandem for this dedup. This could be a bug of the underlying platform. Retry is expected on the client side.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Cache.Resources.DedupNotFoundException(System.Object)">
+            <summary>
+            The dedup with id &apos;{0}&apos; could not be found.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Cache.Resources.EmptyDirectoryNotSupported">
+            <summary>
+            Publishing an empty directory is not currently supported.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Cache.Resources.InvalidPath">
+            <summary>
+            The path provided is invalid.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Cache.Resources.RemainingBytesError">
+            <summary>
+            Content was upload but bytes remained in upload stream.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Cache.Resources.UploadFailed">
+            <summary>
+            Content upload was not accepted by the server.
+            </summary>
+        </member>
+    </members>
+</doc>

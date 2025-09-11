@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.VisualStudio.Services.Packaging.Shared.WebApi</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.Exceptions.PackageBlockedException">
+            <summary>
+            Indicates that a particular package has been blocked by the system, e.g. due to a security incident involving the package.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.Exceptions.InvalidPublishRequestException">
+            <summary>
+            Thrown when a package publish is invalid.
+            Indicates a problem not with the package itself,
+            but with the publish request.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.Exceptions.PackageBlockedPublishException">
+            <summary>
+            Indicates that a particular package has been blocked by the system, e.g. due to a security incident involving the package.
+            Used instead of <see cref="T:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.Exceptions.PackageBlockedException"/> during publish so the HTTP response code can be different
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.Exceptions.PackagingClientWarningExceptionDataConstants.OverrideClientWarningEnabledKey">
+            <summary>
+            Override if a warning message is presented to the client using the X-NuGet-Warning header / the HTTP Reason Phrase
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.Exceptions.UnsupportedMediaTypeException">
+            <summary>
+            Indicates that the media type (Content-Type) on the request was not a supported value.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.Exceptions.PackageDeletedException">
+            <summary>
+            Indicates that a package has been (either temporarily or permanently) deleted.
+            Clients may use this information to act differently than they would for a <see cref="T:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.Exceptions.PackageNotFoundException"/>,
+            e.g. to be able to know not to attempt to (re-)publish the package
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.Exceptions.PackageNotFoundException">
+            <summary>
+            A protocol agnostic, packaging service PackageNotFoundException
+            </summary>
+            <remarks>
+            We should deprecate the NuGet PackageNotFoundException, however this is slightly difficult
+            as it needs to set Data "OverrideNuGetClientWarningEnabledKey" to false.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.Exceptions.PotentiallyDangerousRequestException.#ctor(System.String)">
+            <summary>
+            Thrown when the requests was considered potentially dangerous or malicious,
+            e.g. the request was vulnerable to CSRF
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.Exceptions.UpstreamUnexpectedPackageDataException">
+            <summary>
+            Thrown when the upstream returns an uynexpected package
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.BatchOperationData">
+            <summary>
+            Do not attempt to use this type to create a new BatchOperationData. This
+            type does not contain sufficient fields to create a new batch operation data.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.BatchPromoteData">
+            <summary>
+            Data required for promoting multiple package versions.
+            Pass this while performing {protocol}BatchOperationTypes.Promote batch operation.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.BatchPromoteData.ViewId">
+            <summary>
+            Id or Name of the view, packages need to be promoted to.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.IPackagesBatchRequest.Data">
+            <summary>
+            Data required to perform the operation. This is optional based on type of operation.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.IPackagesBatchRequest.Packages">
+            <summary>
+            The packages onto which the operation will be performed.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.MinimalPackageDetails">
+            <summary>
+            Minimal package details required to identify a package within a protocol.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.MinimalPackageDetails.Id">
+            <summary>
+            Package name.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.MinimalPackageDetails.Version">
+            <summary>
+            Package version.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.PackagingSourceType">
+            <summary>
+            Type of an upstream source, such as Public or Internal.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.PackagingSourceType.Public">
+            <summary>Publicly available source.</summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.PackagingSourceType.Internal">
+            <summary>Azure DevOps upstream source.</summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.UpstreamSourceInfo">
+            <summary>
+            Upstream source definition, including its Identity, package type, and other associated information.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.UpstreamSourceInfo.Id">
+            <summary>Identity of the upstream source.</summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.UpstreamSourceInfo.Name">
+            <summary>Display name.</summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.UpstreamSourceInfo.Location">
+            <summary>Locator for connecting to the upstream source</summary>
+            <remarks>
+            IMPORTANT: Not to be used to compare against other upstream source locations in the Packaging service,
+            as Packaging has previously persisted inconsistent (both name and ID format) locations in
+            commit log and aggregations.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.UpstreamSourceInfo.DisplayLocation">
+            <summary>Locator for connecting to the upstream source in a user friendly format, that may potentially change over time</summary>
+            <remarks>
+            May be null if a human friendly location cannot be computed. May be the same as <see cref="P:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.UpstreamSourceInfo.Location"/> if it is already human friendly.
+            e.g. for internal upstreams, this locator will be based off of the organization/feed/view names rather than ID if they can be resolved.
+            Note that this locator may change over time, e.g. due to a feed rename.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.UpstreamSourceInfo.SourceType">
+            <summary>Source type, such as Public or Internal.</summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.UpstreamSourceInfo.#ctor">
+            <summary>
+            Default constructor is required for deserialization
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Packaging.Shared.WebApi.UpstreamSourceInfo.Equals(System.Object)">
+            <summary>
+            This verifies equality by checking the Id and type.
+            </summary>
+        </member>
+    </members>
+</doc>

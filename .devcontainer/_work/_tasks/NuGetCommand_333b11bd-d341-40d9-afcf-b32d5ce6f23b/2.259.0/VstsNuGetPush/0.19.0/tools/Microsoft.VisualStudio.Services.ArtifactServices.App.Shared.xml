@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.VisualStudio.Services.ArtifactServices.App.Shared</name>
+    </assembly>
+    <members>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Operations.ArtifactServicesOperation.PreOperationSetup(System.Threading.CancellationTokenSource,System.Threading.CancellationTokenSource)">
+            <summary>
+            Override to perform setup which will execute before <see cref="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Operations.ArtifactServicesOperation.PerformOperation(System.Threading.CancellationToken)"/>.
+            </summary>
+            <returns>Whether cleanup is required and therefore whether <see cref="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Operations.ArtifactServicesOperation.PostOperationCleanup"/> will be called after <see cref="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Operations.ArtifactServicesOperation.PerformOperation(System.Threading.CancellationToken)"/>.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Operations.ArtifactServicesOperation.PostOperationCleanup">
+            <summary>
+            Override to perform cleanup which will execute after <see cref="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Operations.ArtifactServicesOperation.PerformOperation(System.Threading.CancellationToken)"/>.
+            This will be called if <see cref="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Operations.ArtifactServicesOperation.PostOperationCleanup"/> returned true.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Operations.ExitCode">
+            <summary>
+            Try to match https://msdn.microsoft.com/en-us/library/windows/desktop/ms681382(v=vs.85).aspx
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Resources.#cctor">
+            Creates the resource manager instance.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Resources.Get(System.String)">
+            Returns a localized string given a resource string name.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Resources.GetInt(System.String)">
+            Returns a localized integer given a resource string name.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Resources.GetBool(System.String)">
+            Returns a localized string given a resource string name.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Resources.Format(System.String,System.Object[])">
+            A little helper function to alleviate some typing associated with loading resources and
+            formatting the strings.  In DEBUG builds, it also asserts that the number of format
+            arguments and the length of args match.
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,1056 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.VisualStudio.Services.BlobStore.Common</name>
+    </assembly>
+    <members>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifierHelperExtensions.CalculateBlobIdentifier(System.IO.Stream,Microsoft.VisualStudio.Services.BlobStore.Common.IBlobHasher)">
+            <summary>
+            Creates a <see cref="T:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifier"/> from the stream provided
+            </summary>
+            <param name="blob">The content stream against which the identifier should be created</param>
+            <returns>
+            A <see cref="T:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifier"/> instance representing the unique identifier for binary the content.
+            </returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifierHelperExtensions.CalculateBlobIdentifierWithBlocks(System.IO.Stream,Microsoft.VisualStudio.Services.BlobStore.Common.IBlobHasher)">
+            <summary>
+            Creates a <see cref="T:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifierWithBlocks"/> from the stream provided
+            </summary>
+            <param name="blob">The content stream against which the identifier should be created</param>
+            <returns>
+            A <see cref="T:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifierWithBlocks"/> instance representing the unique identifier for binary the content.
+            </returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifierHelperExtensions.CalculateBlobIdentifierWithBlocksAsync(System.IO.Stream,Microsoft.VisualStudio.Services.BlobStore.Common.IBlobHasher)">
+            <summary>
+            Creates a <see cref="T:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifierWithBlocks"/> from the stream provided
+            </summary>
+            <param name="blob">The content stream against which the identifier should be created</param>
+            <returns>
+            A <see cref="T:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifierWithBlocks"/> instance representing the unique identifier for binary the content.
+            </returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifierHelperExtensions.CalculateBlobIdentifier(System.Byte[],Microsoft.VisualStudio.Services.BlobStore.Common.IBlobHasher)">
+            <summary>
+            Creates a <see cref="T:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifier"/> from the stream provided
+            </summary>
+            <param name="blob">The content bytes against which the identifier should be created.</param>
+            <returns>
+            A <see cref="T:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifier"/> instance representing the unique identifier for binary the content.
+            </returns>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifierHexConverter">
+            <summary>
+            JSON converter for BlobIdentifier
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.ContentDoesNotMatchException">
+            <summary>
+            Represents an error that occurs because a piece of content
+            does not match the expected content.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.ContentSizeException">
+            <summary>
+            Represents an error that occurs because the size of a set
+            of content is not within restrictive boundaries.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.ContentResourceContentionTimeoutException">
+            <summary>
+            Represents an error that occurs because the server could not
+            access or change content (as requested by a client) within a given
+            period of time.  This is often related to timeouts caused by an inability
+            to finish an operation on the content (e.g. Upload, Download) because
+            another process is in control at that moment (concurrency issues).
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.ProviderException">
+            <summary>
+            Represents an error that occurs at the provider level
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.IUrlSigner">
+            <summary>
+            A provider that can sign URLs that will be valid for a period of time
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.BlobStore.Common.ManagedParallelBlobDownloader.basicHttpClient">
+            <remarks>
+            HttpClient.SendAsync is thread safe https://msdn.microsoft.com/en-us/library/system.net.http.httpclient(v=vs.110).aspx#Anchor_5
+            "HttpClient is intended to be instantiated once and re-used throughout the life of an application. Instantiating an HttpClient
+            class for every request will exhaust the number of sockets available under heavy loads. This will result in SocketException errors."
+            </remarks>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.InstrumentationManifest">
+            <summary>
+            A Windows Instrumentation Manifest (xml file) which can be mapped to
+            PerfCounter types in the System.Diagnostics.PerformanceData namespace.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.InstrumentationManifest.#ctor">
+            <summary>
+            Loads the instrumentation manifest (.man.template) embedded in the caller's assembly.
+            At runtime, this is assumed to be the assembly which has been registered with Windows via lodctr.exe.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.InstrumentationManifest.#ctor(System.String)">
+            <summary>
+            Loads the instrumentation manifest from the given .man.template file.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.InstrumentationManifest.#ctor(System.Reflection.Assembly)">
+            <summary>
+            Tests only: Loads instrumentation manifest (.man.template) embedded in the given assembly.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.InstrumentationManifest.#ctor(System.String,System.String)">
+            <summary>
+            Tests only: Loads instrumentation manifest from the given string.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.InstrumentationManifest.InitializeCounterFacade(System.Boolean)">
+            <summary>
+            Initializes a set of types from the System.Diagnostics.PerformanceData namespace
+            (e.g. CounterSets and CounterSetInstances) which match the counters defined in
+            this Windows Instrumentation Manifest (xml file).
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.InstrumentationManifestException">
+            <summary>
+            Error while parsing a Windows Instrumentation Manifest XML file
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.IPerformanceDataFacade">
+            <summary>
+            Simplifies initialization and registration of a set of PerfCounters, via types
+            in the System.Diagnostics.PerformanceData namespace, and provides access to
+            them as a full listing or individually by their set name and counter name.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.ManifestCounters">
+            <summary>
+            Facade for updating counters defined in a manifest.
+            Provides an Enabled property to disable counter reporting.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.Common.ManifestCounters.WindowsCountersEnabled">
+            <summary>
+            True to enable reporting to Windows perf counters on the host OS.
+            False to only track the current counter value in memory.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.ManifestCounters.CountAverageBatchItemDuration(System.String,System.String,System.Diagnostics.Stopwatch,System.Int32)">
+            <summary>
+            Updates a counter pair of perf_average_timer and perf_average_base.
+            </summary>
+            <param name="counterSetName">Set containing both the perf_average_timer and perf_average_base</param>
+            <param name="counterName">Name of the perf_average_timer (which references its base in its manifest definition)</param>
+            <param name="batchDuration"></param>
+            <param name="batchItemCount"></param>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.NoopPerformanceDataFacade">
+            <summary>
+            Builds the same set of wrapper objects as PerformanceDataFacade, but skips registration of those counters on the host.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.PerfCounter">
+            <summary>
+            Wraps a CounterData, its parent CounterSet, and its set's CounterSetInstance.
+            Protects callers from using perf_average_timer with incorrect units or without its corresponding perf_average_base.
+            Provides contextual properties for diagnostics, verification, and filtering with Linq.
+            </summary>
+            <remarks>
+            Some of this information is omitted from the PerformanceData classes:
+            1) CounterSetInstanceCounterDataSet.Counters is not enumerable
+            2) CounterSet doesn't include a property for the instance type
+            </remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.PerfCounter.CountAverageBatchItemDuration(System.TimeSpan,System.Int32)">
+            <summary>
+            Increments:
+            1) This AverageTimer32 by TimeSpan ticks where 1 tick = 100 nanoseconds.
+            2) The corresponding AverageBase by the batchItemCount.
+            This performs a conversion to Stopwatch ticks where 1 tick = 1 divided by Stopwatch.Frequency seconds.
+            e.g. requestContext.RequestTimer.ExecutionSpan.Ticks
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.PerfCounter.CountAverageBatchItemDuration(System.Diagnostics.Stopwatch,System.Int32)">
+            <summary>
+            Increments:
+            1) This AverageTimer32 by Stopwatch elapsed ticks where 1 tick = 1 divided by Stopwatch.Frequency seconds.
+            2) The corresponding AverageBase by the batchItemCount.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.PerfCounterSet.Dispose">
+            <summary>
+            Unregisters CounterSet and CounterSetInstance
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.PerformanceDataFacade">
+            <summary>
+            Live facade with real counters
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.PerformanceDataFacade.GetExistingOrCreate(System.Guid)">
+            <summary>
+            Returns one instance per providerGuid which is shared within the host process.
+            This avoids registering CounterSetInstances more than once per process.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.PerformanceDataFacade.Dispose">
+            <summary>
+            Unregisters CounterSets and CounterSetInstances
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.BlobNamespace">
+            <summary>
+            The permissions related to modifying blobs.  For example, permitted users can
+            add or delete blobs.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.BlobNamespace.Permissions">
+            <summary>
+            The permissions that can be set and checked for.
+            </summary>
+            <remarks>
+            When this enum definition is updated, please update the values in the deployment files as well:
+                Microsoft.VisualStudio.Services.BlobStore.Servicing/Host/Account/Groups/CreateHostingAccount.Service.BlobStore.xml
+                Microsoft.VisualStudio.Services.BlobStore.Servicing/Host/Deployment/Groups/InstallBlobStoreSecurity.xml
+            </remarks>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.BlobStore.Common.BlobNamespace.Permissions.Read">
+            <summary> Read blobs </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.BlobStore.Common.BlobNamespace.Permissions.Delete">
+            <summary> Delete blobs </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.BlobStore.Common.BlobNamespace.Permissions.Create">
+            <summary> Create blobs </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.BlobStore.Common.BlobNamespace.Permissions.All">
+            <summary> Perform any defined action on blobs </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.BlobStore.Common.KeepUntilSecurityNamespace.Permissions.MaxKeepUnlimited">
+            <summary>
+            The largest possible value supported by the security namespace.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.KeepUntilSecurityNamespace.GetPermissionForDays(System.Double)">
+            <summary>
+            For a given number of days return the required permission
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.VsoHashAlgorithm">
+            <summary>
+            The algorithm to compute the hash value of any given content (in form of byte array).
+            </summary>
+            <remarks>
+            The implementation delegates the computation to <see cref="T:Microsoft.VisualStudio.Services.BlobStore.Common.VsoHash"/>.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.ArtifactScopeConstants">
+            <summary>
+            Holds the monikers for the various scopes/experiences that eventually get
+            hardened in our BS metadata tables.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.BlobBlockHash.Equals(System.Object)">
+            <summary>
+            Returns true/false whether the object is equal to the current <see cref="T:Microsoft.VisualStudio.Services.BlobStore.Common.BlobBlockHash"/>
+            </summary>
+            <param name="obj">The object to compare against the current instance</param>
+            <returns>
+            <c>true</c> if the objects are equal, otherwise <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.BlobBlockHash.Equals(Microsoft.VisualStudio.Services.BlobStore.Common.BlobBlockHash)">
+            <summary>
+            Returns true/false whether the <see cref="T:Microsoft.VisualStudio.Services.BlobStore.Common.BlobBlockHash"/> is equal to the current <see cref="T:Microsoft.VisualStudio.Services.BlobStore.Common.BlobBlockHash"/>
+            </summary>
+            <param name="other">The <see cref="T:Microsoft.VisualStudio.Services.BlobStore.Common.BlobBlockHash"/> to compare against the current instance</param>
+            <returns>
+            <c>true</c> if the objects are equal, otherwise <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.BlobBlockHash.GetHashCode">
+            <summary>
+            Gets the unique hash for this unique identifier for binary content.
+            </summary>
+            <returns>
+            A hash value for the content identifier
+            </returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.BlobBlockHash.ToString">
+            <summary>
+            Returns a user-friendly, non-canonical string representation of the unique identifier for binary content
+            </summary>
+            <returns>
+            A user-friendly, non-canonical string representation of the content identifier
+            </returns>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifier">
+            <summary>
+            Represents a hash identifier for content stored in the Content Repository.
+            Internally represented as a byte array of the alogrithm result with a single byte algorithm identifier appended.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifier.#ctor(System.Byte[])">
+            <summary>
+            Create a new identifier based on the given value.  
+            </summary>
+            <remarks>
+            The value is expected to contain both the hash and the algorithm id.
+            </remarks>
+            <param name="value">Must be the value corresponding to the Bytes of the id to be created.</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifier.#ctor(System.String)">
+            <summary>
+            Create a new identifier based on the given value.  
+            </summary>
+            <remarks>
+            The value is expected to contain both the hash and the algorithm id.
+            </remarks>
+            <param name="valueIncludingAlgorithm">Must be the value corresponding to the ValueString of the id to be created.</param>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifier.AlgorithmResultBytes">
+            <summary>
+            Gets the unique identifier for binary content computed when the
+            class instance was created
+            This is *NOT* the complete value as it *excludes* the AlgorithmId suffix.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifier.AlgorithmResultString">
+            <summary>
+            AlgorithmResult in HexString format (ex:  54CE418A2A89A74B42CC3963)
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifier.ValueString">
+            <summary>
+            Gets the unique identifier for binary content computed when the
+            class instance was created  (ex:  54CE418A2A89A74B42CC396301). 
+            This is the complete value as it includes the AlgorithmId suffix.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifier.Bytes">
+            <summary>
+            Gets a copy of byte array underlying this identifier.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifier.AlgorithmId">
+            <summary>
+            Gets the (single byte) algorithm id used to generate the blob identifier (hash).
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifier.Equals(System.Object)">
+            <summary>
+            Returns true/false whether the object is equal to the current <see cref="T:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifier"/>
+            </summary>
+            <param name="obj">The object to compare against the current instance</param>
+            <returns>
+            <c>true</c> if the objects are equal, otherwise <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifier.Equals(Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifier)">
+            <summary>
+            Returns true/false whether the <see cref="T:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifier"/> is equal to the current <see cref="T:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifier"/>
+            </summary>
+            <param name="other">The <see cref="T:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifier"/> to compare against the current instance</param>
+            <returns>
+            <c>true</c> if the objects are equal, otherwise <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifier.GetHashCode">
+            <summary>
+            Gets the unique hash for this unique identifier for binary content.
+            </summary>
+            <returns>
+            A hash value for the content identifier
+            </returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifier.ToString">
+            <summary>
+            Returns a user-friendly, non-canonical string representation of the unique identifier for binary content
+            </summary>
+            <returns>
+            A user-friendly, non-canonical string representation of the content identifier
+            </returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifier.Random(BuildXL.Cache.ContentStore.Hashing.HashType)">
+            <summary>
+            Produces a non-cryptographic pseudo random BlobIdentifier. This function must not be used
+            when it is required that the result can't be predicted.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifierExtensions.MapToIntegerRange(Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifier,System.UInt32,System.UInt32)">
+            <summary>
+            Takes a given BlobIdentifier and maps it to within a range of unsigned integers by using the first
+            four bytes of the blob identifier.
+            </summary>
+            <param name="blobId"></param>
+            <param name="firstValue">The lowest unsigned integer to return.</param>
+            <param name="count">The range of the unsigned integers.  The highest value that can be returned is (firstValue + count - 1).</param>
+            <remarks>Useful for exploiting the uniform distribution of hashes.</remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifierExtensions.ToBlobIdentifier(BuildXL.Cache.ContentStore.Hashing.ContentHash)">
+            <summary>
+            Converts a ContentStore ContentHash to a Blob Identifier.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifierWithBlocks.BlockHashes">
+            <summary>
+            The globally unique identities of each chunk in this blob
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifierWithBlocks.Equals(System.Object)">
+            <summary>
+            Equality is based on the BlobId and the type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifierWithBlocks.Equals(Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifierWithBlocks)">
+            <summary>
+            Equality is based on the BlobId and the type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifierWithBlocks.GetHashCode">
+            <summary>
+            The hash is computed from the BlobIdand tagged with the type to
+            distiguish it from the respective BlobIdentifier.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifierWithBlocks.ToString">
+            <summary>
+            Returns a user-friendly, non-canonical string representation of the unique identifier for binary content
+            </summary>
+            <returns>
+            A user-friendly, non-canonical string representation of the content identifier
+            </returns>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.IdBlobReference">
+             <summary>
+             Identifies a reference to a blob.
+             </summary>
+             <remarks> 
+             A Identified Blob Reference has to parts:
+             
+             1. A reference scope that defines the namespace of the
+                reference. It can be null but must not be the empty string.
+                Access to references within a scope other than "null" is
+                is subject to authorization.
+            
+             2. An opaque reference name that uniquely identifies the
+                reference within its scope. It must neither be null nor
+                the empty string.
+             
+             Values of type BlobReference are immutable and feature
+             extensional equality.
+             </remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.IdBlobReference.#ctor(System.String,System.String)">
+            <summary>
+            Constructs a new (immutable) BlobReference.
+            </summary>
+            <param name="name">the name of the reference; this must not be null or the empty string</param>
+            <param name="scope">the scope of the reference; this must neither be null nor the empty string</param>
+            <remarks>
+            A scope is a namespace for reference identifiers. Adding a reference with a scope that is not
+            null to a Blob is subject to authorization for the respective scope.
+            
+            References with a null scope are rejected by the BlobStore API.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.Common.IdBlobReference.Scope">
+            <summary>
+            The scope of the reference. A client must be authorized to create
+            references within a given scope. The null scope if reserved
+            for internal usage.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.IdBlobReference.op_Equality(Microsoft.VisualStudio.Services.BlobStore.Common.IdBlobReference,Microsoft.VisualStudio.Services.BlobStore.Common.IdBlobReference)">
+             <remarks>
+             BlobReference are immutable, thus, it makes sense to define
+             equality extensionally.
+            
+             Also IdBlobReferences used to be just strings which have extensional
+             equality, by keeping this we avoid bugs due to usages of operator == that
+             are lingering in the code.
+             </remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.DedupIdentifier.Deserialize(System.String)">
+            <summary>
+            Create a dedup identifier from a string.
+            </summary>
+            <remarks>
+            <pre>
+            This method has two purposes:
+            1) Create is overloaded, so any library referencing Create() must be able to resolve all the 
+               parameter types across all the overloaded versions, which include 
+               BuildXL.Cache.ContentStore.Hashing.DedupNode. This method can help reduce compile-time dependency.
+            2) To add some API consistency, it has the same signature as BlobIdentifier.Deserialize(string).
+            </pre>
+            </remarks>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.ArtifactPublishOptions">
+            <summary>
+            This class encapsulates the available artifact publish options.
+            These in the future may be used by both drop.exe and DedupManifestArtifactClient.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.FileBlobDescriptor.#cctor">
+            <summary>
+            Initializes the <see cref="T:Microsoft.VisualStudio.Services.BlobStore.Common.FileBlobDescriptor"/> class.
+            NOTE: The calculation of the stream for empty directory is made sync here because we expect
+            this operation to be very short. The async callers of this method should bear that in mind.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.FileBlobDescriptor.CalculateAsync(System.String,System.Boolean,System.String,Microsoft.VisualStudio.Services.BlobStore.Common.FileBlobType,System.Threading.CancellationToken)">
+            <summary>
+            Calculates the asynchronous.
+            </summary>
+            <param name="rootDirectory">The root directory.</param>
+            <param name="chunkDedup">if set to <c>true</c> [chunk dedup].</param>
+            <param name="relativePath">The relative path.</param>
+            <param name="fileBlobType">Type of the file BLOB.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.FileBlobDescriptor.CalculateAsync(Microsoft.VisualStudio.Services.Content.Common.IFileSystem,System.String,System.Boolean,System.String,Microsoft.VisualStudio.Services.BlobStore.Common.FileBlobType,System.Threading.CancellationToken)">
+            <summary>
+            For DropServiceClient, ItemUploader, and PrecomputedHashesGenerator, calculates the blob descriptor.
+            Handles empty directory case for both file and chunk dedup.
+            </summary>
+            <param name="fileSystem">The file system.</param>
+            <param name="rootDirectory">The root directory.</param>
+            <param name="chunkDedup">if set to <c>true</c> [chunk dedup].</param>
+            <param name="relativePath">The relative path.</param>
+            <param name="fileBlobType">Type of the file BLOB.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.FileBlobDescriptor.Deserialize(System.String,System.String)">
+            <summary>
+            For PrecomputedHashesGenerator
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.FileBlobDescriptor.#ctor(Microsoft.VisualStudio.Services.BlobStore.Common.IDropFile,Microsoft.VisualStudio.Services.Content.Common.IFileSystem)">
+            <summary>
+            For RemoteableDropServiceClient
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.FileBlobDescriptor.#ctor(Microsoft.VisualStudio.Services.BlobStore.Common.IDropFile,Microsoft.VisualStudio.Services.Content.Common.IFileSystem,System.String)">
+            <summary>
+            For RemoteableDropServiceClient
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.FileBlobDescriptor.#ctor(Microsoft.VisualStudio.Services.BlobStore.Common.IDropFile,System.String)">
+            <summary>
+            For RemoteableDropServiceClient
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.FileBlobDescriptor.#ctor(System.String,System.String,System.Nullable{System.Int64},Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifier,System.Collections.Generic.List{System.String})">
+            <summary>
+            For Deserialize and tests.
+            TODO: Do not use this API from tests. Instead use the constructor which alllows an InMemoryFileSystem to be specified.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.FileBlobDescriptor.#ctor(Microsoft.VisualStudio.Services.Content.Common.IFileSystem,System.String,System.String,System.Nullable{System.Int64},Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifier,System.Collections.Generic.List{System.String})">
+            <summary>
+            For Deserialize and tests
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.FileBlobDescriptor.#ctor(Microsoft.VisualStudio.Services.Content.Common.IFileSystem,System.String,System.String)">
+            <summary>
+            Private constructor
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.FileBlobType">
+            <summary>
+            File Blob Type.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.BlobStore.Common.FileBlobType.File">
+            <summary>
+            Moniker for the file blob type.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.BlobStore.Common.FileBlobType.EmptyDirectory">
+            <summary>
+            Moniker for emptydirectory blob type.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.FileBlobDescriptorConstants">
+            <summary>
+            Class encapsulates all the descriptor related constants that may appear in the manifest etc.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.GlobFactory">
+             <summary>
+             This class encapsulates all the globbing functionality provided for .artifactignore file support.
+             globbing semantics are similar to: https://git-scm.com/docs/gitignore.
+             The code below leverages the OSS globbing library: https://github.com/dazinator/DotNet.Glob.
+             The reason for choosing this library is the higher perf compared to Regex: https://github.com/dazinator/DotNet.Glob/wiki/Benchmarks-(vs-Compiled-Regex).
+             
+             Developer Note:
+             foo             -> evaluates to a file or a folder.
+             foo/            -> evaluates to a folder only.
+             /foo            -> ties the scope of search to the current folder.
+             #               -> used for adding comments, will be skipped.
+                             -> empty lines will simply be skipped.
+             **              -> used to search across several folder hierarchies.
+             !               -> negates the operation.
+             ?,*             -> carry the regular regex semantics.
+             [0-9]           -> can be used to specify char ranges.
+             [!5]            -> can be used to exclude certain char ranges.
+             *foo            -> can be used to look up any file name that ends with foo.
+             *foo/           -> can be used to look up any folder name that ends with foo.
+             **/foo/**/bar   -> ** can be used to look deep down into the directory structure. Depth allowed is tied to the underlying filesystem.
+            
+             CASE SENSITIVITY Semantics:
+             
+             For *NIX/MAC systems - the case sensitivity is honoured. (DEFAULT).
+             For Windows systems - the case sensitivity will be ignored.
+            
+             PATHING semantics:
+            
+             For *NIX/MAC systems - the '/' character is identified as the directory separator.
+             For Windows systems - the '\' character is identified as the directory separator.
+            
+             The .artifactignore file passed in is expected to provide the correct pathing semantics corresponding to the underlying file system/OS platform.
+             Incorrect pathing may generate non-deterministic results.
+            
+             LONG PATHS:
+            
+             Depending on the depth of the directory structure it is possible that the caller may encouter 0X80010135 PATH TOO LONG errors. This is however,
+             orthogonal to the globbing functionality. The end-user may choose to enable long paths, and with that the globbing library is expected to function
+             as expected.
+            
+             SPECIAL Characters:
+            
+             On Windows, special file characters: \, /, :, *, ?, ", |, &lt;, &gt; are not allowed for file / folder names.
+             On *NIX/MAC, special file characters: \0, / are not allowed.
+            
+             SCALABILITY notes:
+            
+             The class makes heavy use of collections inorder to manage the list of files/folders that fall under the given source directory.
+             DEVNOTE: It is possible that for a large drop with millions of files, we may run into OOM issues. This is currently not addressed in this code.
+             These collections are scoped to the PerformGlobbing() method. Calling this method 'N' times with the same input (i.e., source directory) will
+             produce the same result i.e., the operation is idempotent.
+             </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.BlobStore.Common.GlobFactory.GlobPatternsWindows">
+            <summary>
+            Glob patterns and the corresponding monikers for DOS based systems.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.BlobStore.Common.GlobFactory.GlobPatternsNix">
+            <summary>
+            Glob patterns and the corresponding monikers for *NIX based systems.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.BlobStore.Common.GlobFactory.DefaultGlobList">
+            <summary>
+            By default, in absence of a .artifactignore file, we ignore .git folders.
+            In the future, if other such defaults are to be added, they should be added here.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.GlobFactory.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.GlobFactory.#ctor(Microsoft.VisualStudio.Services.Content.Common.IFileSystem,Microsoft.VisualStudio.Services.Content.Common.Tracing.IAppTraceSource,System.Boolean)">
+            <summary>
+            Glob Factory constructor.
+            </summary>
+            <param name="fileSystem"></param>
+            <param name="tracer"></param>
+            <param name="globEmptyDirectories"></param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.GlobFactory.Init(System.String)">
+            <summary>
+            Initializes all the necessary constructs required for globbing
+            the files and folders under the given source directory. The method also
+            instantiates/populates collections and controls the flow of logic further
+            down the stack.
+            </summary>
+            <param name="sourceDirectory">The source directory.</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.GlobFactory.PerformGlobbing(System.String)">
+            <summary>
+            Performs the globbing operation given a .artifactignore file containing file-globbing patterns.
+            </summary>
+            <param name="sourceDirectory">The source directory.</param>
+            <returns>A collection of files/folders returned after the globbing operation.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.GlobFactory.DispatchToGlobbingStation(System.String)">
+            <summary>
+            This method parses and dispatches files for globbing.
+            When multi .artifactignore file support is added this is where
+            the dispatching of batches should occur.
+            </summary>
+            <param name="sourceDirectory">The source directory.</param>
+            <returns>A collection of files/folders to be ignored.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.GlobFactory.ParseArtifactIgnore">
+            <summary>
+            Parses the .artifactignore file and generates ignore and do not ignore glob segments.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.GlobFactory.GlobAccounting(System.String,System.Boolean)">
+            <summary>
+            Perform glob accounting for processing later.
+            </summary>
+            <param name="glob">The glob itself.</param>
+            <param name="ignore">Whether the glob implies ignoring a file/folder or otherwise.</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.GlobFactory.GlobbingStation(System.String)">
+            <summary>
+            Glob segments arrive here for the final filtering phase.
+            </summary>
+            <param name="sourceDirectory">The source directory.</param>
+            <returns>A collection of files/folders to be ignored.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.GlobFactory.GlobFilter(System.String,System.Boolean)">
+            <summary>
+            Perform glob based filtering.
+            </summary>
+            <param name="sourceDirectory">The source directory.</param>
+            <param name="ignoreFiles">The collection of files/folders to be ignored.</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.GlobFactory.PopulateFilter(DotNet.Globbing.Glob,DotNet.Globbing.Glob,System.Boolean)">
+            <summary>
+            Populate the files to be ignored.
+            </summary>
+            <param name="ignoreGlob">The ignore glob.</param>
+            <param name="ignoreGlobWide">The wider extent ignore glob.</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.GlobFactory.IsSpecialExtentGlob(System.String)">
+            <summary>
+            Detect special glob extent patterns.
+            </summary>
+            <param name="globLine">The glob line.</param>
+            <returns>True if its an extent glob, False otherwise.</returns>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.Helpers">
+            <summary>
+            Encapsulates a set of static helpers to be utilized across classes within BlobStore.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Microsoft.VisualStudio.Services.BlobStore.Common.Helpers.FileSystemStringComparer(System.OperatingSystem)" -->
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.Helpers.IsWindowsPlatform(System.OperatingSystem)">
+            <summary>
+            Look up the OS platform ID and determine whether it is Windows or not.
+            </summary>
+            <param name="operatingSystem"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.Common.IDropFile.FileSize">
+            <summary>
+            Size of file in bytes
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.VsoHash.WalkBlocksAsync(System.IO.Stream,System.Threading.SemaphoreSlim,System.Boolean,Microsoft.VisualStudio.Services.BlobStore.Common.SingleBlockBlobCallbackAsync,Microsoft.VisualStudio.Services.BlobStore.Common.MultiBlockBlobCallbackAsync,Microsoft.VisualStudio.Services.BlobStore.Common.MultiBlockBlobSealCallbackAsync,System.Int64)">
+            <summary>
+            Asynchronously walks a stream, calling back into supplied delegates at a block level
+            </summary>
+            <param name="stream">The stream to read bytes from.  The caller is responsible for correctly setting the stream's starting positon.</param>
+            <param name="blockActionSemaphore">Optional: If non-null, a SemaphoreSlim to bound the number of callbacks in flight.  This can be used to bound the number of block-sized that are allocated at any one time.</param>
+            <param name="multiBlocksInParallel">Only affects multi-block blobs.  Determines if multiBlockCallback delegates are called in parallel (True) or serial (False).</param>
+            <param name="singleBlockCallback">Only will be called if the blob is composed of a single block. Is called with the byte buffer for the block, the length of block (possibly less than buffer's length), and the hash of the block.</param>
+            <param name="multiBlockCallback">Only will be called if the blob is composed of a multiple blocks. Is called with the byte buffer for the block, the length of block (possibly less than buffer's length), the index of this block, the hash of the block, and whether or not this is the final block.</param>
+            <param name="multiBlockSealCallback">Only will be called if the blob is composed of a multiple blocks. Is called after all multiBlockCallback delegates have returned.</param>
+            <param name="bytesToReadFromStream">Number of bytes to read from the stream. Specify -1 to read to the end of the stream.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.VsoHash.BCrypt.SafeHashHandle">
+            <content>
+            The <see cref="T:Microsoft.VisualStudio.Services.BlobStore.Common.VsoHash.BCrypt.SafeHashHandle"/> nested type.
+            </content>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.BlobStore.Common.VsoHash.BCrypt.SafeHashHandle.Null">
+            <summary>
+            A handle that may be used in place of <see cref="F:System.IntPtr.Zero"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.VsoHash.BCrypt.SafeHashHandle.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.Services.BlobStore.Common.VsoHash.BCrypt.SafeHashHandle"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.VsoHash.BCrypt.SafeHashHandle.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.Services.BlobStore.Common.VsoHash.BCrypt.SafeHashHandle"/> class.
+            </summary>
+            <param name="preexistingHandle">An object that represents the pre-existing handle to use.</param>
+            <param name="ownsHandle">
+                <see langword="true" /> to have the native handle released when this safe handle is disposed or finalized;
+                <see langword="false" /> otherwise.
+            </param>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.Common.VsoHash.BCrypt.SafeHashHandle.IsInvalid">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.VsoHash.BCrypt.SafeHashHandle.ReleaseHandle">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.VsoHash.BCrypt.BCryptDestroyHash(System.IntPtr)">
+            <summary>
+            Destroys a hash or Message Authentication Code (MAC) object.
+            </summary>
+            <returns>Returns a status code that indicates the success or failure of the function.</returns>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.VsoHash.BCrypt.SafeAlgorithmHandle">
+            <summary>
+            A BCrypt algorithm handle.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.BlobStore.Common.VsoHash.BCrypt.SafeAlgorithmHandle.Null">
+            <summary>
+            A handle that may be used in place of <see cref="F:System.IntPtr.Zero"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.VsoHash.BCrypt.SafeAlgorithmHandle.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.Services.BlobStore.Common.VsoHash.BCrypt.SafeAlgorithmHandle"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.VsoHash.BCrypt.SafeAlgorithmHandle.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.Services.BlobStore.Common.VsoHash.BCrypt.SafeAlgorithmHandle"/> class.
+            </summary>
+            <param name="preexistingHandle">An object that represents the pre-existing handle to use.</param>
+            <param name="ownsHandle">
+                <see langword="true" /> to have the native handle released when this safe handle is disposed or finalized;
+                <see langword="false" /> otherwise.
+            </param>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.Common.VsoHash.BCrypt.SafeAlgorithmHandle.IsInvalid">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.VsoHash.BCrypt.SafeAlgorithmHandle.ReleaseHandle">
+            <inheritdoc />
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.BlobStore.Common.XpressNative.UncompressedChunkSize">
+            <summary>
+            UncompressedChunkSize [in]
+            The chunk size to use when compressing the UncompressedBuffer buffer.This parameter must be one of the following values: 512, 1024, 2048, or 4096. The operating system uses 4096, and the recommended value for this parameter is also 4096.
+            https://msdn.microsoft.com/en-us/library/windows/hardware/ff552127(v=vs.85).aspx
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.Resources.#cctor">
+            Creates the resource manager instance.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.Resources.Get(System.String)">
+            Returns a localized string given a resource string name.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.Resources.GetInt(System.String)">
+            Returns a localized integer given a resource string name.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.Resources.GetBool(System.String)">
+            Returns a localized string given a resource string name.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.Resources.Format(System.String,System.Object[])">
+            A little helper function to alleviate some typing associated with loading resources and
+            formatting the strings.  In DEBUG builds, it also asserts that the number of format
+            arguments and the length of args match.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.Resources.InvalidContentHashValue(System.Object)">
+            <summary>
+            Invalid hash value.  The string value provided {0} is not a valid content identifier/hash value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.Resources.InvalidFinalBlockContentLength">
+            <summary>
+            Invalid or unexpected content length.  The content length is greater than the block size defined.  The length of any content that is final block content must be less than the block size.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.Resources.InvalidHashLength(System.Object)">
+            <summary>
+            Input hash {0} must be at least six characters long.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.Resources.InvalidPartialBlock">
+            <summary>
+            Partial final block encountered in identifier computation.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.Resources.InvalidPartialContentBlockLength">
+            <summary>
+            Invalid or unexpected content length.  The content length does not equal the block size defined.  The length of any content that is not final block content must match the block size.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.Resources.SymLinkExceptionMessage">
+            <summary>
+            Unable to load symbolic/hard linked file.  Check &apos;fsutil behavior query SymlinkEvaluation&apos; to ensure proper behavior.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.ListOfFiles">
+            <summary>
+            Implements a reader which processes an input text file which contains a list of files to be enumerated.
+            Enforces that each line in the input text file:
+            - is blank (in which case it is ignored)
+            OR
+            - begins with a hash sign (#) in which case it ignores
+            OR is treated as a filename which
+            - must be an absolute path
+            - refers to a file which must exist
+            - refers to a file which must falls under a common root directory provided
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.ListOfFiles.LoadFileListAsync(System.String,System.String)">
+            <summary>
+            Static file list loader for when a list is desired.
+            </summary>
+            <param name="inputFilename">The input filename.</param>
+            <param name="expectedCommonRootDirectory">The expected common root directory.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.ListOfFiles.EnumerateFilesAsync(System.IO.FileInfo,System.IO.DirectoryInfo)">
+            <summary>
+            Gets a new enumeration of the files.
+            </summary>
+            <returns>An list of the files contained in the file.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.ListOfFiles.GetFileInfo(System.String)">
+            <summary>
+            Throws if the provided line is not a valid entry for the file list, otherwise returns a FileInfo for the file.
+            </summary>
+            <param name="line">The line to process.</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.ListOfFiles.ShouldSkipLine(System.String)">
+            <summary>
+            Determines if the provided line should be skipped during enumeration.
+            </summary>
+            <param name="line">The line.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.PrecomputedHashesGenerator">
+            <summary>
+            Writes new hashes files and reads existing ones.
+            </summary>
+            <remarks>
+            Directory tree traversal when writing a new hashes file:
+            The hash generator iterates through a directory tree recursively (depth-first pre-order) via Directory.EnumerateFiles(sourceDirectory, "*", SearchOption.AllDirectories) which uses FindFirstFile/FindNextFile internally.
+            Paths are then grouped by their parent directory which is likely redundant.
+            Paths are then divided into pages.
+            Each page may contain files from multiple directories.
+            
+            Active parallelism configuration:
+            The number of hash operations which can execute in parallel is determined by the host's processor count via a SemaphoreSlim wrapping the contents of GetFileBlobDescriptorAsync.
+            
+            Vestigial parallelism configuration:
+            MaxPageSize determines the number of files sent at a time to a DataFlow block which performs at most 16 hash operations in parallel.
+            MaxParallelDirectoryPublish determines the number of pages being processed in parallel by another Dataflow block. This acts as a multiplier on the parallelism of at most 16 hashing operations per page.
+            The parallelism intended by these mechanisms is overridden further down the call tree by the SemaphoreSlim described above which bounds parallelism to the host's processor count.
+            </remarks>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.PrecomputedHashesGenerator.MaxParallelComputeHash">
+            <summary>
+            Prevents us from needless context switching when hashing
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.PrecomputedHashesGenerator.#ctor(Microsoft.VisualStudio.Services.Content.Common.Tracing.IAppTraceSource)">
+            <summary>
+            Construct a hash generator with default settings
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.PrecomputedHashesGenerator.#ctor(Microsoft.VisualStudio.Services.Content.Common.Tracing.IAppTraceSource,Microsoft.VisualStudio.Services.Content.Common.IFileSystem,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Construct a hash generator with overrides for vestigial parallelism settings and filename case handling
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.PrecomputedHashesGenerator.MaxPageSize">
+            <summary>
+            See remarks on this class.
+            Defaults to 100.
+            Drop overrides to 5000.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.PrecomputedHashesGenerator.MaxParallelDirectoryPublish">
+            <summary>
+            See remarks on this class.
+            Defaults to 128.
+            Drop overrides to 40.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.PrecomputedHashesGenerator.LowercasePaths">
+            <summary>
+            True to change the case of the relative path to lowercase.
+            False to leave path case unchanged.
+            Defaults to false.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.PrecomputedHashesGenerator.LoadPrecomputedHashes(System.String,System.String,System.Boolean)">
+            <summary>
+            Read a hashes file and deserialize it to descriptor objects.
+            This is used by publish operations in DropServiceClient, Drop.App, and Symbol.App.
+            </summary>
+            <param name="preComputedHashesFile">Hashes file to read</param>
+            <param name="directory">Path provided as the rootDirectory of each FileBlobDescriptor</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.PrecomputedHashesGenerator.GeneratePrecomputedHashesAsync(System.String,System.String,System.String,System.Boolean,System.Boolean,Microsoft.VisualStudio.Services.BlobStore.Common.ArtifactPublishOptions,System.Threading.CancellationToken)">
+            <summary>
+            Calculate hashes for a directory's contents and write them to a precomputed hashes file.
+            This is used by hash operations in DropServiceClient, Drop.App, and Symbol.App.
+            </summary>
+            <param name="precomputedHashesFileName">Hashes file to write.</param>
+            <param name="directory">Directory of content to hash.</param>
+            <param name="fileListFileName">The file list name.</param>
+            <param name="chunkDedup">If set to <c>true</c> [uses chunk dedup].</param>
+            <param name="includeEmptyDirectories">If set to <c>true</c> [precomputes hashes for empty directories as well].</param>
+            <param name="artifactPublishOptions">Options for publishing a drop.</param>
+            <param name="cancellationToken">CancellationToken.</param>
+            <returns>A collection of FileBlobDescriptors.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.PrecomputedHashesGenerator.PaginateAndProcessFiles(System.String,System.Collections.Generic.IEnumerable{System.IO.FileInfo},System.Boolean,System.Boolean,Microsoft.VisualStudio.Services.BlobStore.Common.ArtifactPublishOptions,System.Threading.CancellationToken,System.Action{Microsoft.VisualStudio.Services.BlobStore.Common.FileBlobDescriptor})">
+            <summary>
+            Given a set of paths, compute the hashes of each file and pass the resulting
+            FileBlobDescriptor for each file to a callback Action.
+            </summary>
+            <param name="sourceDirectory">name of directory to process.</param>
+            <param name="filePaths">The file paths.</param>
+            <param name="chunkDedup">if set to <c>true</c> [chunk dedup].</param>
+            <param name="includeEmptyDirectories">if set to <c>true</c> [include empty directories].</param>
+            <param name="artifactPublishOptions">Options for publishing a drop.</param>
+            <param name="cancellationToken">CancellationToken to set if asynchronous action should be canceled.</param>
+            <param name="hashCompleteCallback">Callback Action to perform using the resulting FileBlobDescriptor computed for each file.</param>
+            <remarks>This method is used by consumers outside VSTS ArtifactServices including vPack.</remarks>
+            <returns>File count.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.PrecomputedHashesGenerator.PaginateAndProcessFiles(System.String,System.Boolean,System.Boolean,Microsoft.VisualStudio.Services.BlobStore.Common.ArtifactPublishOptions,System.Threading.CancellationToken,System.Action{Microsoft.VisualStudio.Services.BlobStore.Common.FileBlobDescriptor})">
+            <summary>
+            Given a directory name, compute the hashes of the files (recursively) and pass the resulting
+            FileBlobDescriptor for each file to a callback Action.
+            </summary>
+            <param name="sourceDirectory">The name of directory to process.</param>
+            <param name="chunkDedup">If set to <c>true</c> [chunk dedup].</param>
+            <param name="includeEmptyDirectories">If set to <c>true</c> [include empty directories].</param>
+            <param name="artifactPublishOptions">Options for publishing a drop.</param>
+            <param name="cancellationToken">CancellationToken to set if asynchronous action should be canceled.</param>
+            <param name="hashCompleteCallback">Callback Action to perform using the resulting FileBlobDescriptor computed for each file.</param>
+            <remarks>This method is used by consumers outside VSTS ArtifactServices including vPack.</remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.PrecomputedHashesGenerator.PaginateAndProcessFiles(System.String,System.Boolean,System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.PageItem}},System.Threading.CancellationToken,System.Action{Microsoft.VisualStudio.Services.BlobStore.Common.FileBlobDescriptor})">
+            <summary>
+            Given Pages of PageItems to process, compute the hashes of the files at the items' path and pass the resulting
+            FileBlobDescriptor for each file to a callback Action.
+            </summary>
+            <param name="sourceDirectory">name of directory to process.</param>
+            <param name="chunkDedup">if set to <c>true</c> [chunk dedup].</param>
+            <param name="pages">The pages.</param>
+            <param name="cancellationToken">CancellationToken to set if asynchronous action should be canceled.</param>
+            <param name="hashCompleteCallback">Callback Action to perform using the resulting FileBlobDescriptor computed for each file.</param>
+            <remarks>This method is used by consumers outside VSTS ArtifactServices including vPack.</remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.PrecomputedHashesGenerator.GetSegmentedPagesFromSourceDirectory(System.String,System.Boolean,Microsoft.VisualStudio.Services.BlobStore.Common.ArtifactPublishOptions)">
+            <summary>
+            Fetches the segmented PageItem's from the source directory.
+            </summary>
+            <param name="sourceDirectory">The name of directory to process.</param>
+            <param name="includeEmptyDirectories">If set to <c>true</c> [include empty directories].</param>
+            <param name="artifactPublishOptions">Publish options for the drop.</param>
+            <returns>A collection of a collection of PageItems.</returns>
+        </member>
+    </members>
+</doc>

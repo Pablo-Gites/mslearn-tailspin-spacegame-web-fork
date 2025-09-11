@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.VisualStudio.Services.BlobStore.Common.Telemetry</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.Telemetry.BlobStoreApplicationInsightsTelemetrySender">
+            <summary>
+            Creates a new ApplicationInsightsTelemetrySender with the InstrumentationKey read from the BlobStore API.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.Telemetry.BlobStoreApplicationInsightsTelemetrySender.GetInstrumentationKeyAsync">
+            <summary>
+            Hits the <see cref="F:Microsoft.VisualStudio.Services.BlobStore.Common.Telemetry.BlobStoreApplicationInsightsTelemetrySender.InstrumentationKeyEndPoint"/>
+            </summary>
+            <returns>The <see cref="F:Microsoft.VisualStudio.Services.BlobStore.Common.Telemetry.BlobStoreApplicationInsightsTelemetrySender.InstrumentationKey"/> if it exists</returns>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.Telemetry.BlobStoreClientTelemetry">
+            <summary>
+            Wraps ClientTelemetry with BlobStore specific properties and actions.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Microsoft.VisualStudio.Services.BlobStore.Common.Telemetry.BlobStoreClientTelemetry.MeasureActionAsync``1(Microsoft.VisualStudio.Services.BlobStore.Common.Telemetry.BlobStoreTelemetryRecord,System.Func{System.Threading.Tasks.Task{``0}})" -->
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.Telemetry.BlobStoreTelemetryRecord">
+            <summary>
+            Abstract telemetry record for use with BlobStore events.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Microsoft.VisualStudio.Services.BlobStore.Common.Telemetry.BlobStoreTelemetryRecord.SetMeasuredActionResult``1(``0)" -->
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.Telemetry.BlobStoreTelemetryRecord.TrimPrefix(System.String)">
+            <summary>
+            Trims unwanted suffixes from TelemetryRecords.
+            "PipelineArtifactActionRecord" => "PipelineArtifact"
+            </summary>
+            <param name="prefix">The type name of telemetry record being created e.g. "PipelineArtifactActionRecord".</param>
+            <returns>Trimmed type name as string.</returns>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.Telemetry.DedupDownloadStatistics">
+            <summary>
+            Stores various statistics related to BlobStore download operations.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.Telemetry.DedupDownloadStatistics.AsString">
+            <summary>
+            Provides friendly access to Download Statistics properties.
+            </summary>
+            <returns>Formatted download statistics.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.Telemetry.DedupDownloadStatistics.ConcatenateStatistics(Microsoft.VisualStudio.Services.BlobStore.Common.Telemetry.DedupDownloadStatistics)">
+            <summary>
+            Merges additional instances DownloadStatistics with the current instance.
+            </summary>
+            <param name="currentStatistics">DownloadStatistics to be concatenated.</param>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.Telemetry.DedupDownloadTelemetryRecord">
+            <summary>
+            Telemetry record used to send BlobStore download statistics.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.Telemetry.DedupUploadStatistics">
+            <summary>
+            Stores various statistics related to BlobStore upload operations.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.Telemetry.DedupUploadStatistics.AsString">
+            <summary>
+            Provides friendly access to Upload Statistics properties.
+            </summary>
+            <returns>Formatted upload statistics.</returns>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.Common.Telemetry.DedupUploadTelemetryRecord">
+            <summary>
+            Telemetry record used to send BlobStore upload statistics.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.Telemetry.Resources.#cctor">
+            Creates the resource manager instance.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.Telemetry.Resources.Get(System.String)">
+            Returns a localized string given a resource string name.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.Telemetry.Resources.GetInt(System.String)">
+            Returns a localized integer given a resource string name.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.Telemetry.Resources.GetBool(System.String)">
+            Returns a localized string given a resource string name.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.Common.Telemetry.Resources.Format(System.String,System.Object[])">
+            A little helper function to alleviate some typing associated with loading resources and
+            formatting the strings.  In DEBUG builds, it also asserts that the number of format
+            arguments and the length of args match.
+        </member>
+    </members>
+</doc>

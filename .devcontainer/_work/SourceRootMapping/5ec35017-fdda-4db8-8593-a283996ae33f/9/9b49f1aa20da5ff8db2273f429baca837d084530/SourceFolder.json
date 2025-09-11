@@ -1,0 +1,26 @@
+﻿{
+  "build_artifactstagingdirectory": "6/a",
+  "agent_builddirectory": "6",
+  "collectionUrl": "https://dev.azure.com/PawelCO/",
+  "definitionName": "Pablo-Gites.mslearn-tailspin-spacegame-web-models",
+  "repositoryTrackingInfo": [
+    {
+      "identifier": "self",
+      "repositoryType": "GitHub",
+      "repositoryUrl": "https://github.com/Pablo-Gites/mslearn-tailspin-spacegame-web-models",
+      "sourcesDirectory": "6/s/mslearn-tailspin-spacegame-web-models"
+    }
+  ],
+  "fileFormatVersion": 3,
+  "lastRunOn": "09/11/2025 22:16:21 +00:00",
+  "repositoryType": "GitHub",
+  "lastMaintenanceAttemptedOn": "",
+  "lastMaintenanceCompletedOn": "",
+  "build_sourcesdirectory": "6/s",
+  "common_testresultsdirectory": "6/TestResults",
+  "collectionId": "5ec35017-fdda-4db8-8593-a283996ae33f",
+  "definitionId": "9",
+  "hashKey": "9b49f1aa20da5ff8db2273f429baca837d084530",
+  "repositoryUrl": "https://github.com/Pablo-Gites/mslearn-tailspin-spacegame-web-models",
+  "system": "build"
+}

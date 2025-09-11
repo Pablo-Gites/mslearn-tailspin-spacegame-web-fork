@@ -1,0 +1,608 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.VisualStudio.Services.BlobStore.WebApi</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.BlobStore2HttpClient">
+            <summary>
+            A Vss Http Client for the Blob Store V2
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.BlobStore2HttpClient.TranslatedExceptions">
+            <summary>
+            Exceptions for errors
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.BlobStore2HttpClient.GetBlobAsync(Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifier,System.Threading.CancellationToken)">
+            <summary>
+            Get a file from the content service using a the supplied blob identifier.
+            </summary>
+            <param name="blobId">The globally unique identifier for the blob to download</param>
+            <param name="cancellationToken"></param>
+            <returns>A task that returns the stream of bytes requested</returns>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.BlobToFileMapping">
+            <summary>
+            Helper class to capture the mapping between a local file path and a blob id
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.BlobToFileMapping.ItemPath">
+            <summary>
+            The path of the represented item in its associated container, if any. Mostly used for error reporting.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.BlobToFileMapping.FilePath">
+            <summary>
+            The path of the represented item on disk in the client system.  This is the source or the destination
+            depending on the scenario (upload or download, respectively).
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.BlobToFileMapping.BlobId">
+            <summary>
+            The globally unique descriptor of the blob associated with this item
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.BlobToFileMapping.BlobType">
+            <summary>
+            Gets or sets the type of the BLOB.
+            </summary>
+            <value>
+            The type of the BLOB.
+            </value>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.BlobToFileMapping.DownloadUri">
+            <summary>
+            URI from which the blob may be downloaded.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.BlobToFileMapping.FileLength">
+            <summary>
+            The length of this file.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.BlobToFileMapping.DedupGetter">
+            <summary>
+            A lambda function that can be called to retrieve the content - possibly from the local cache.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.BlobToFileMappingHelper.GetMissingFileMappingsInParallel(System.Collections.Generic.IEnumerable{Microsoft.VisualStudio.Services.BlobStore.WebApi.BlobToFileMapping},Microsoft.VisualStudio.Services.Content.Common.Tracing.IAppTraceSource,System.Threading.CancellationToken)">
+            <summary>
+            Gets all mappings that don't have existing files,
+            </summary>
+            <param name="mappings">Blob to file mappings.</param>
+            <param name="tracer">Tracer.</param>
+            <param name="cancellationToken">Cancellation token.</param>
+            <returns>Returns all mappings with missing files.</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.BlobToFileMappingHelper.HashMatchesFileContent(Microsoft.VisualStudio.Services.BlobStore.WebApi.BlobToFileMapping,System.Boolean,Microsoft.VisualStudio.Services.Content.Common.Tracing.IAppTraceSource,System.Threading.CancellationToken)">
+            <summary>
+            Gets all mappings that have files with inconsistent hashes.
+            </summary>
+            <param name="mapping">Blob to file mappings.</param>
+            <param name="chunkDedup">Is the blob mapping a chunk dedup.</param>
+            <param name="tracer">Tracer.</param>
+            <param name="cancellationToken">Cancellation token.</param>
+            <returns>Returns if the blob mapping hash is the same as the file hash.</returns>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.BlobToUriMapping">
+            <summary>
+            Helper class to capture the mapping of blob to a URI where it is or should be stored
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.BlobToUriMapping.ContentSpec">
+            <summary>
+            A description of the content represented by this mapping.  Mostly used for error reporting.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.BlobToUriMapping.StreamFactory">
+            <summary>
+            A factory that returns a stream over the represented content
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.BlobToUriMapping.UriSpec">
+            <summary>
+            The URI to which the content represented here should be put.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.BlobToUriMapping.BlobId">
+            <summary>
+            The globally unique identity of the content associated with this item
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.BlobToUriMapping.BytesToCopyFromStream">
+            <summary>
+            Number of bytes to use from the stream. Negative one means go until EOF.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.ApplicationInsightsInfo">
+            <summary>
+            Information about the Application Insights Instance.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.ApplicationInsightsInfo.InstrumentationKey">
+            <summary>
+            Instrumentation Key.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.Blob.Id">
+            <summary>
+            ID of the blob. It is calculated by a specialized hashing algorithm from the blob content.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.Blob.Url">
+            <summary>
+            A SAS-based URL, containing an implicit TTL (time-to-live) value for downloading the blob. 
+            The caller is advised to (1) treat the URL as sensible data (2) download the blob in a timely fashion.
+            </summary>
+            <remarks>
+            This value is only provided when Azure storagre is used at the server side. If provided, the URL
+            will be only availble for a limitied period.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.Blob.BlockHashes">
+            <summary>
+            An array of block hashes for the blob. Block hashes are calculated by a specialized hashing algorithm from the blob content. 
+            All the blocks except the last one must be exactly VsoHash.BlockSize; the last one must be no larger than VsoHash.BlockSize. 
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.BlobBatch">
+            <summary>
+            An array of blob items. Each blob item contains a blob ID.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.ClientPlatformInfo">
+            <summary>
+            The information about client platform to run the application.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.ClientPlatformInfo.OSInfo">
+            <summary>
+            OS info, including OS family, distro and version.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.ClientPlatformInfo.Architecture">
+            <summary>
+            The machine type / CPU architecture. Example: AMD64, x86_64, arm
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.OSInfo">
+            <summary>
+            Information about operating system, including OS family, distro and version.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.OSInfo.Name">
+            <summary>
+            Operating system name, e.g. Windows, Linux, Darwin (macOS)
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.OSInfo.Release">
+            <summary>
+            Rough information about kernel version, e.g. "10" or "4.15.0-20-generic"
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.OSInfo.Version">
+            <summary>
+            Detailed information about kernel version, e.g. "10.0.14393" or "#21-Ubuntu SMP Tue Apr 24 06:16:15 UTC 2018"
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.OSInfo.DistributionName">
+            <summary>
+            Distribution name. Applicable only to certain OS platforms such as Linux. e.g. Ubuntu, Fedora, CentOS
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.OSInfo.DistributionVersion">
+            <summary>
+            Distribution version. Applicable only to certain OS platforms such as Linux. e.g. 18.04
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.ClientToolReleaseInfo">
+            <summary>
+            Information about a released client application.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.ClientToolReleaseInfo.Name">
+            <summary>
+            Application's name. Example: ArtifactTool
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.ClientToolReleaseInfo.RuntimeIdentifier">
+            <summary>
+            An identifier specifying the platform this release targets. Expect the allowed values to be a subset of 
+            those officially supported by dotnet core: https://docs.microsoft.com/en-us/dotnet/core/rid-catalog. But 
+            at minimum these three are always supported: win-x64, linux-x64, osx-x64
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.ClientToolReleaseInfo.Version">
+            <summary>
+            A semantic version of this release, in the format of {Major}.{Minor}.{Build}.{Revision} if all four sections 
+            exists. {Build} and {Revision} are not required.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.ClientToolReleaseInfo.FilePath">
+            <summary>
+            The path to the app in blob storage
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.ClientToolReleaseInfo.Uri">
+            <summary>
+            A download URI for this release. The URI is based on an access token that will expire after a certain period.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.ReferenceStatus">
+            <summary>
+            The status of a reference as the result of reference adding call.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.ReferenceStatus.Added">
+            <summary>
+            The reference was added.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.ReferenceStatus.Missing">
+            <summary>
+            The reference couldn't be added because the blob is missing.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.Reference">
+            <summary>
+            Base Class for API Version 2 Blob References
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.Reference.#ctor(Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifier,System.Nullable{System.Boolean})">
+            <summary>
+            Creates a new Reference.
+            </summary>
+            <param name="blobId">the identifier of the referenced blob</param>
+            <param name="isMissing">If true, that status is set to Missing. Default is false.</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.Reference.#ctor(Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.Blob,System.Nullable{System.Boolean})">
+            <summary>
+            Creates a new Reference with the given status.
+            </summary>
+            <param name="blob">the referenced blob</param>
+            <param name="isMissing">If true, the status is set to Missing.</param>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.Reference.Blob">
+            <summary>
+            A blob item that contains the blob ID.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.Reference.Status">
+            <summary>
+            The status of this reference as a result of adding call.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.KeepUntilDateTimeConverter">
+            <summary>
+            This replaces the default Newtonsoft DateTime JSON converter. We use this
+            to strictly enforce the date format defined in KeepUntilBlobReference.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.KeepUntilReference">
+            <summary>
+            A time based reference to a blob
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.KeepUntilReference.KeepUntil">
+            <summary>
+            A time based reference
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.IdReference">
+            <summary>
+            Reference counted identifiable references to blobs that can be removed
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.IdReference.Id">
+            <summary>
+            A reference ID is constructed by the calling service based on the model it exposes to
+            its clients as customized views of blob storage. For example, a file service may use
+            file's full name as the ID.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.IdReference.Scope">
+            <summary>
+            The scope of the reference, a namespace that isolates references from different experience
+            services. Access to references within a namespace is subject to authorization.
+            </summary>
+            <remarks>
+            The value is either null or an non-empty and non-whitespace string.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.Contracts.ReferenceBatch">
+            <summary>
+             An array of reference items. Each reference item contains a reference ID and a blob item.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.DedupIdBatch">
+            <summary>
+            An array of node items. Each node item contains a node ID.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.DedupManifestArtifactClient.DownloadSingleManifestAsync(Microsoft.VisualStudio.Services.BlobStore.WebApi.DownloadDedupManifestArtifactOptions,System.Boolean,System.Collections.Generic.ISet{System.String},System.Threading.CancellationToken)">
+            <summary>
+            Download a single manifest
+            </summary>
+            <param name="downloadOptions">Download options of the artifact</param>
+            <param name="cancellationToken">Cancellation token</param>
+            <param name="downloadManifestReferences">Only download manifest references when it's true - when it's on the first level manifest</param>
+            <param name="paths">A list of paths that are downloaded and should be excluded when downloading the next manifest</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.DownloadDedupManifestArtifactOptions.CreateWithManifestId(Microsoft.VisualStudio.Services.BlobStore.Common.DedupIdentifier,System.String,System.Uri,System.Collections.Generic.IEnumerable{System.String},System.String,System.Boolean)">
+            <summary>
+            Download options for single download and for DownloadSingleManifestAsync function
+            </summary>
+            <param name="manifestId">Manifest Id</param>
+            <param name="targetDirectory">Path on the agent machine where the artifacts will be downloaded</param>
+            <param name="proxyUri">Proxy Uri</param>
+            <param name="minimatchPatterns">Minimatch patterns</param>
+            <param name="artifactName">Artifact name - by setting the artifact name, it will create a root directory that is the artifact name itself.</param>
+            <param name="minimatchFilterWithArtifactName">Specify if the new minimatch pattern should apply - the new minimatch pattern will filter including the artifact name when artifact exists</param>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.BlobExceptionMapping">
+            <summary>
+            BlobExceptionMapping.
+            </summary>
+            <remarks>
+            DEVNOTE, Bug: Beware developer, if you're adding exceptions that are considered shared i.e., they are passed along
+            across different components/services, make it so that they are part of the common libraries and also do ensure that the
+            mapping for it is added in the respective controller mapping too.
+            Otherwise, the mapping translation won't occur as expected and your exception(s),
+            regardless of whether you want them to be retry-able or not, will get retried, numerous times.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.Exceptions.ClientToolNotFoundException">
+            <summary>
+            Exception thrown when no matching client tool was found
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.Exceptions.DedupUnsupportedException">
+            <summary>
+            Indicates that a dedup operation is currently unsupported
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.Exceptions.InvalidLocalDirectoryException">
+            <summary>
+            Indicates that a local directory (e.g. source or target directory) is invalid as it does not exist or is not a directory
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.Exceptions.InvalidPathException">
+            <summary>
+            Indicates that a local directory (e.g. source or target directory) is invalid as it does not exist or is not a directory
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.DedupExceptionMapping">
+            <summary>
+            DedupExceptionMapping.
+            </summary>
+            <remarks>
+            DEVNOTE, Bug: Beware developer, if you're adding exceptions that are considered shared i.e., they are passed along
+            across different components/services, make it so that they are part of the common libraries and also do ensure that the
+            mapping for it is added in the respective controller mapping too.
+            Otherwise, the mapping translation won't occur as expected and your exception(s),
+            regardless of whether you want them to be retry-able or not, will get retried, numerous times.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.IBlobStoreHttpClient.GetBlobAsync(Microsoft.VisualStudio.Services.BlobStore.Common.BlobIdentifier,System.Threading.CancellationToken)">
+            <summary>
+            Get a file from the content service using a the supplied blob identifier.
+            </summary>
+            <param name="blobId">The globally unique identifier for the blob to download</param>
+            <param name="cancellationToken"></param>
+            <returns>A task that returns the stream of bytes requested</returns>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet`1">
+            <summary>
+                This is a collection of per-key exclusive locks.
+                Borrowed from the Domino code-base
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet`1.Acquire(`0)">
+            <summary>
+                Acquires an exclusive lock for the given key. <see cref="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet`1.Release(Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet{`0}.LockHandle)" /> must be called
+                subsequently in a 'finally' block.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet`1.Release(Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet{`0}.LockHandle)">
+            <summary>
+                Releases an exclusive lock for the given key. One must release a lock after first await-ing an
+                <see cref="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet`1.Acquire(`0)" /> (by disposing the returned lock handle).
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet`1.LockHandle">
+            <summary>
+                Represents an acquired lock in the collection. Call <see cref="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet`1.LockHandle.Dispose" />
+                to release the acquired lock.
+            </summary>
+            <remarks>
+                FxCop requires equality operations to be overloaded for value types.
+                Because lock handles should never be compared, these will all throw.
+            </remarks>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet`1.LockHandle.TaskCompletionSource">
+            <summary>
+                The associated TaskCompletionSource.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet`1.LockHandle.Key">
+            <summary>
+                Gets the associated Key.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet`1.LockHandle.#ctor(Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet{`0},`0)">
+            <summary>
+                Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet`1.LockHandle" /> struct for the given collection/key.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet`1.LockHandle.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet`1.LockHandle.Equals(Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet{`0}.LockHandle)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet`1.LockHandle.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet`1.LockHandle.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet`1.LockHandle.op_Equality(Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet{`0}.LockHandle,Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet{`0}.LockHandle)">
+            <summary>
+                Equality operator.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet`1.LockHandle.op_Inequality(Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet{`0}.LockHandle,Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet{`0}.LockHandle)">
+            <summary>
+                Inequality operator.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet`1.Acquire(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+                Acquire exclusive locks for a set of keys.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet`1.LockHandleSet">
+            <summary>
+                Represents a set of acquired locks in the collection. Call <see cref="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet`1.LockHandleSet.Dispose" />
+                to release the acquired locks.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet`1.LockHandleSet.#ctor(Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet{`0},System.Collections.Generic.IEnumerable{Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet{`0}.LockHandle})">
+            <summary>
+                Initializes a new instance of the <see cref="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet`1.LockHandleSet" /> class for the given set of keys.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.LockSet`1.LockHandleSet.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.BlobStore.WebApi.ProxyRoutingConstants.BlobIdRoutePart">
+            <summary>
+            Route value specified by the client to GET a single blob.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.BlobStore.WebApi.ProxyRoutingConstants.SasUriRoutePart">
+            <summary>
+            Route value specified by the client to GET a single SAS URI.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.BlobStore.WebApi.ProxyRoutingConstants.ServiceUriRoutePart">
+            <summary>
+            Route value specified by the client to GET a single Service URI.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.SemaphoreSlimToken">
+            <summary>
+                Disposable token for guarenteed release via a using() statement
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.SemaphoreSlimToken.Wait(System.Threading.SemaphoreSlim)">
+            <summary>
+                Wait on a SemaphoreSlim and return a token that, when disposed, calls Release() on the SemaphoreSlim
+            </summary>
+            <param name="semaphore">The semaphore to wait on</param>
+            <returns>A token that, when disposed, calls Release() on the SemaphoreSlim</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.SemaphoreSlimToken.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.SemaphoreSlimToken.op_Equality(Microsoft.VisualStudio.Services.BlobStore.WebApi.SemaphoreSlimToken,Microsoft.VisualStudio.Services.BlobStore.WebApi.SemaphoreSlimToken)">
+            <summary>
+                Equality operator.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.SemaphoreSlimToken.op_Inequality(Microsoft.VisualStudio.Services.BlobStore.WebApi.SemaphoreSlimToken,Microsoft.VisualStudio.Services.BlobStore.WebApi.SemaphoreSlimToken)">
+            <summary>
+                Inequality operator.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.SemaphoreSlimToken.Equals(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.SemaphoreSlimToken.GetHashCode">
+            <inheritdoc />
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.SemaphoreSlimExtensions">
+            <summary>
+                Static class that provides a disposable token for guaranteed release via a using() statement
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.SemaphoreSlimExtensions.WaitToken(System.Threading.SemaphoreSlim)">
+            <summary>
+                Get a disposable token for guaranteed release via a using() statement.
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.BlobStore.WebApi.ValueUnit">
+            <summary>
+                This type is effectively 'void', but usable as a type parameter when a value type is needed.
+            </summary>
+            <remarks>
+                This is useful for generic methods dealing in tasks, since one can avoid having an overload
+                for both Task and Task{TResult}. One instead provides only a Task{TResult} overload, and
+                callers with a void result return Void.
+            </remarks>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.BlobStore.WebApi.ValueUnit.Void">
+            <summary>
+                Void unit type
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Resources.#cctor">
+            Creates the resource manager instance.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Resources.Get(System.String)">
+            Returns a localized string given a resource string name.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Resources.GetInt(System.String)">
+            Returns a localized integer given a resource string name.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Resources.GetBool(System.String)">
+            Returns a localized string given a resource string name.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Resources.Format(System.String,System.Object[])">
+            A little helper function to alleviate some typing associated with loading resources and
+            formatting the strings.  In DEBUG builds, it also asserts that the number of format
+            arguments and the length of args match.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Resources.BlobNotFoundException(System.Object)">
+            <summary>
+            The blob with id &apos;{0}&apos; could not be found.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Resources.ClientToolNoMatchingReleaseFound">
+            <summary>
+            No release could be found based on the provided information.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Resources.DedupInconsistentAttributeException(System.Object)">
+            <summary>
+            Unable to retrieve consistent attributes from dedup with id &apos;{0}&apos;. Different results are returned by two fetching operations in tandem for this dedup. This could be a bug of the underlying platform. Retry is expected on the client side.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Resources.DedupNotFoundException(System.Object)">
+            <summary>
+            The dedup with id &apos;{0}&apos; could not be found.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Resources.EmptyDirectoryNotSupported">
+            <summary>
+            Publishing an empty directory is not currently supported.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Resources.InvalidPath">
+            <summary>
+            The path provided is invalid.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Resources.RemainingBytesError">
+            <summary>
+            Content was upload but bytes remained in upload stream.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.BlobStore.WebApi.Resources.UploadFailed">
+            <summary>
+            Content upload was not accepted by the server.
+            </summary>
+        </member>
+    </members>
+</doc>

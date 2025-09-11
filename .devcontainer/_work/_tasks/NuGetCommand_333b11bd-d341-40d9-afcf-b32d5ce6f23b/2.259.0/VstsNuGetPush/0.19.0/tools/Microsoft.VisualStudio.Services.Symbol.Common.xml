@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.VisualStudio.Services.Symbol.Common</name>
+    </assembly>
+    <members>
+        <member name="M:Microsoft.VisualStudio.Services.Symbol.Common.SymstoreUtil.GetDebugEntryData(System.String,System.Collections.Generic.IEnumerable{System.String},System.Boolean)">
+            <summary>
+            Generate IDebugEntryData without blobIds set. (To be used by cloudbuild which doesn't need to calculate the blobId)
+            </summary>
+            <param name="fileToRead">The actual file that the symbol file records will be extracted from</param>
+            <param name="filenames">A list of filenames to generate debug entries for. The filenames should represent
+            files that are binary equivalent to fileToRead, and will not be read </param>
+            <returns>A list of IDebugEntryData</returns>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Symbol.Common.DebugInformationLevel">
+            <summary>
+            Defines the level of debug-related information inside the .pdb file. These values can be combined together (bitwise OR'ed) to create a customized level.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.Symbol.Common.DebugInformationLevel.None">
+            <summary>
+            If set, the .pdb file contains no debug information.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.Symbol.Common.DebugInformationLevel.Binary">
+            <summary>
+            If set, the .pdb file contains debug information which is binary.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.Symbol.Common.DebugInformationLevel.Publics">
+            <summary>
+            If set, the .pdb file contains public symbols.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.Symbol.Common.DebugInformationLevel.TraceFormatPresent">
+            <summary>
+            If set, the .pdb file contains trace format.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.Symbol.Common.DebugInformationLevel.TypeInfo">
+            <summary>
+            If set, the .pdb file contains type information.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.Symbol.Common.DebugInformationLevel.LineNumbers">
+            <summary>
+            If set, the .pdb file contains line number information.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.Symbol.Common.DebugInformationLevel.GlobalSymbols">
+            <summary>
+            If set, the .pdb file contains symbol information.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.Symbol.Common.DebugInformationLevel.Private">
+            <summary>
+            If set, the .pdb file contains public symbols and has type, line number and symbol information.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.Symbol.Common.DebugInformationLevel.SourceIndexed">
+            <summary>
+            If set, the .pdb file supports the source server.
+            </summary>
+        </member>
+    </members>
+</doc>

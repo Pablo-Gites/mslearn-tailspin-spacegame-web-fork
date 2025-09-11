@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Cache</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Cache.VolumeWideCache">
+            <summary>
+            A volume-wide cache provides cache service for a local file system.
+            </summary>
+            <remarks>
+            We have to maintain independent and isolated cache for each volume since we are using hard link to realize cache hit. 
+            This is because the file system doesn't allow to create a hard link pointing to somewhere outside the volume where
+            the source file is at.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Cache.CacheContext">
+            <summary>
+            Inputs configuring a CloudStore.Cache instance for an ArtifactServices host
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Cache.CacheContext.#ctor(BuildXL.Cache.ContentStore.Interfaces.Logging.Severity,System.Collections.Generic.IEnumerable{System.String},System.String,System.Boolean,System.String,System.Nullable{System.Int32},System.Nullable{System.UInt32},Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Cache.FileRealizationMethod,BuildXL.Cache.ContentStore.Interfaces.Sessions.FileAccessMode,System.Boolean,System.Nullable{System.Int32})">
+            <summary>
+            Configure a CloudStore.Cache instance for an ArtifactServices host
+            </summary>
+            <param name="minLogSeverity">Minimum severity of cache messages to be logged. Use Warning in the general case and Verbose for investigation.</param>
+            <param name="configPaths">null to use the default cache configuration. Otherwise a set of composable CloudStore cache config file paths.</param>
+            <param name="rootPath">null to use the default cache location. Otherwise the destination directory of cache writes.</param>
+            <param name="useCacheAsService">true to connect to an out-of-process cache service. false to use an in-process cache.</param>
+            <param name="maxCacheConnections">Maximum number of concurrent connections to open to the existing cache process.</param>
+            <param name="sizeInMegabytes">null to use the default maximum cache size. Otherwise the maximum size of the cache directory in megabytes.</param>
+            <param name="realizationMethod">allow Any, Copy, and HardLink file realization, omit for default (HardLink)</param>
+            <param name="localFileAccessMode">allow ReadOnly or Writable file access for copied content.</param>
+            <param name="allowWriteAttributesOnContent">Whether the cache should allow or deny WriteAttributes permissions on produced files.</param>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Cache.CacheContext.#ctor(System.String,System.Collections.Generic.IEnumerable{System.String},System.String,System.Boolean,System.String,System.Nullable{System.Int32},System.Nullable{System.UInt32},Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Cache.FileRealizationMethod,BuildXL.Cache.ContentStore.Interfaces.Sessions.FileAccessMode,System.Boolean,System.Nullable{System.Int32})">
+            <summary>
+            Local cache with default configuration if all parameters are omitted
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Cache.CacheContext.#ctor(BuildXL.Cache.ContentStore.Interfaces.Logging.Severity,Microsoft.VisualStudio.Services.Content.Common.Tracing.IAppTraceSource,System.Collections.Generic.IEnumerable{System.String},System.String,System.Boolean,System.String,System.Nullable{System.Int32},System.Nullable{System.UInt32},Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Cache.FileRealizationMethod,BuildXL.Cache.ContentStore.Interfaces.Sessions.FileAccessMode,System.Boolean,System.Nullable{System.Int32})">
+            <summary>
+            Unit test constructor accepts an IAppTraceSource
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Cache.CacheContext.#ctor(Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Cache.CacheContext)">
+            <summary>
+            Copy constructor
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Cache.CacheLogTraceAdapter">
+            <summary>
+            This adapter does 3 things.
+            1) Converts
+              from calls to the cache's log interface (CloudStore...ILogger)
+              to calls to ArtifactServices' log interface (ArtifactServices...IAppTraceSource)
+            2) Excludes log severities below the minimum.
+            3) Prefixes messages to show their source.
+            
+            Interface mapping is...
+              ILogger    ==> IAppTraceSource
+              Always     ==> Info
+              Debug      ==> Verbose
+              Error      ==> Error
+              ErrorThrow ==> Error, then throw
+              Fatal      ==> Critical
+              Flush      ==> (Noop)
+              Info       ==> Info
+              Log        ==> TraceEvent
+              Warning    ==> Warning
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Cache.FileRealizationMethod">
+            <summary>Represents various ways the cache may chose to realize instances of files on disk.</summary>    
+            <remarks>Keep in sync with ContentStore.Sessions.FileRealizationMode unless a legitimate case
+            to vary comes up, at which time, remove this comment.</remarks>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Cache.LocalCacheService.GetCache(System.String)">
+            <summary>
+            Get the cache serving the drive in which the destination path resides. If the cache has not been initialized, create a new one. 
+            </summary>
+            <param name="cacheRoot">Root folder to place the cache.</param>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Cache.OldCacheConfiguration">
+            <summary>
+            Stripped-down old format configuration containing only fields of interest.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Cache.OldCacheConfiguration.Content">
+            <summary>
+            Old Content field
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Cache.OldContentConfiguration">
+            <summary>
+            Stripped-down old format configuration containing only fields of interest.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Cache.OldContentConfiguration.FileSystem">
+            <summary>
+            Old FileSystem field
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Cache.OldFileSystemConfiguration">
+            <summary>
+            Stripped-down old format configuration containing only fields of interest.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Cache.OldFileSystemConfiguration.FileSystemL1">
+            <summary>
+            Old FileSystemL1 field
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Cache.OldFileSystemL1Configuration">
+            <summary>
+            Stripped-down old format configuration containing only fields of interest.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Cache.OldFileSystemL1Configuration.SizeInMegabytes">
+            <summary>
+            Max cache size, in megabytes.
+            </summary>
+        </member>
+        <member name="F:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Cache.OldFileSystemL1Configuration.DenyWriteAttributesOnContent">
+            <summary>
+            If true, content will have Deny-WriteAttribute ACLs set
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Cache.Resources.#cctor">
+            Creates the resource manager instance.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Cache.Resources.Get(System.String)">
+            Returns a localized string given a resource string name.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Cache.Resources.GetInt(System.String)">
+            Returns a localized integer given a resource string name.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Cache.Resources.GetBool(System.String)">
+            Returns a localized string given a resource string name.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.ArtifactServices.App.Shared.Cache.Resources.Format(System.String,System.Object[])">
+            A little helper function to alleviate some typing associated with loading resources and
+            formatting the strings.  In DEBUG builds, it also asserts that the number of format
+            arguments and the length of args match.
+        </member>
+    </members>
+</doc>

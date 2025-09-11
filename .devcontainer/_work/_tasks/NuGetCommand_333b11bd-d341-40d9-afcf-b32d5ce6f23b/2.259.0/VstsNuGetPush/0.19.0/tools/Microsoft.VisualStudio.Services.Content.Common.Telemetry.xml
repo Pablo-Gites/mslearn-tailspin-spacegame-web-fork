@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.VisualStudio.Services.Content.Common.Telemetry</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.Telemetry.TelemetryPlatformSpecific">
+            <summary>
+            Provides the means to get platform specific system information.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Content.Common.Telemetry.TelemetryPlatformSpecific.OSVersion">
+            <remarks>
+            Any application using .NET Framework that calls Environment.OSVersion
+            must include an app.manifest that targets Windows versions > 8,
+            otherwise this call will return the Windows 8 OSVersion.
+            Bug: https://dev.azure.com/mseng/AzureDevOps/_workitems/edit/1511433
+            </remarks>
+            <returns>Example: Microsoft Windows NT 10.0.17763.0</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Telemetry.TelemetryPlatformSpecific.GetOSName">
+            <summary>
+            Attempts to use WMI to query the "friendly" OS Name,
+            failing that, returns the OSVersion.
+            </summary>
+            <returns>Example: Microsoft Windows 10 Enterprise</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Telemetry.TelemetryPlatformSpecific.Get45PlusFromRegistry">
+            <summary>
+            From: https://docs.microsoft.com/en-us/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed
+            Example: "461310" which is ".NET Framework 4.7.1"
+            </summary>
+            <returns>Identifier for the current .NET Framework</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Telemetry.ApplicationInsightsTelemetrySender.#ctor(System.String,Microsoft.VisualStudio.Services.Content.Common.Tracing.IAppTraceSource,Microsoft.ApplicationInsights.Channel.ITelemetryChannel,System.TimeSpan)">
+            <summary>
+            Composition root constructor for tests
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Telemetry.ApplicationInsightsTelemetrySender.#ctor(System.String,Microsoft.VisualStudio.Services.Content.Common.Tracing.IAppTraceSource,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Recommended constructor for general use
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Telemetry.ApplicationInsightsTelemetrySender.UpdateInstrumentationKey(System.String)">
+            <summary>
+            Updates the Instrumentation Key for the telemetry sender and client.
+            </summary>
+            <param name="key">Application Insights Instumentation Key</param>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.Telemetry.ApplicationInsightsTelemetryChannel">
+            <summary>
+            Attribution: http://apmtips.com/blog/2016/11/10/sync-channel/
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Telemetry.ApplicationInsightsTelemetryChannel.#ctor(Microsoft.VisualStudio.Services.Content.Common.Telemetry.IApplicationInsightsTransmitter,System.TimeSpan)">
+            <param name="timeout">
+            Maximum amount of time we'll wait during Transmission.SendAsync() which calls WebRequest.GetResponseAsync().
+            The default timeout in AppInsights v2.3.0 is 100s per Transmission.cs.
+            This is enforced by a Task.Delay continuation which will call WebRequest.Abort() if the GetResponseAsync task hasn't completed yet.
+            https://github.com/Microsoft/ApplicationInsights-dotnet/blob/v2.3.0/src/Core/Managed/Shared/Channel/Transmission.cs
+            </param>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.Telemetry.IApplicationInsightsTransmitter">
+            <summary>
+            Matches Microsoft.ApplicationInsights.Channel.Transmission's constructor signature
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Telemetry.IApplicationInsightsTransmitter.Send(System.Uri,System.Byte[],System.String,System.String,System.TimeSpan)">
+            <summary>
+            Matches Microsoft.ApplicationInsights.Channel.Transmission's constructor signature
+            </summary>
+        </member>
+        <member name="T:Microsoft.VisualStudio.Services.Content.Common.Telemetry.TelemetryInformationLevel">
+            <summary>
+            Level of detail sent in telemetry. More details are sent for first party customers.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Content.Common.Telemetry.TelemetryRecord.Current_X_TFS_Session">
+            <summary>
+            This value persists for the lifetime of the process or until VssClientHttpRequestSettings.ResetDefaultSettings() is called.
+            In the code, it is generated by Microsoft.VisualStudio.Services.Common.VssHttpRequestSettings().
+            On the wire, it is sent in a header, X-TFS-Session, which is defined at Microsoft.VisualStudio.Services.Common.Internal.HttpHeaders.TfsSessionHeader.
+            In Kusto IisLogs, it is written to X_TFS_Session.
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Telemetry.TelemetryRecord.#ctor(Microsoft.VisualStudio.Services.Content.Common.Telemetry.TelemetryRecord)">
+            <summary>
+            Copy constructor for derived classes
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Content.Common.Telemetry.TelemetryRecord.CreatedUtcNow">
+            <summary>
+            Time at which the record's constructor was called.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Content.Common.Telemetry.TelemetryRecord.SentUtcNow">
+            <summary>
+            Approximate time at which the sender attempted to store/transmit the record.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Content.Common.Telemetry.TelemetryRecord.CorrelationId">
+            <summary>
+            An ID provided by the caller which represents a client-defined session of activity.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Content.Common.Telemetry.TelemetryRecord.X_TFS_Session">
+            <summary>
+            This value persists for the lifetime of the process or until VssClientHttpRequestSettings.ResetDefaultSettings() is called.
+            In the code, it is generated by Microsoft.VisualStudio.Services.Common.VssHttpRequestSettings().
+            On the wire, it is sent in a header, X-TFS-Session, which is defined at Microsoft.VisualStudio.Services.Common.Internal.HttpHeaders.TfsSessionHeader.
+            In Kusto IisLogs, it is written to X_TFS_Session.
+            </summary>
+        </member>
+        <member name="P:Microsoft.VisualStudio.Services.Content.Common.Telemetry.TelemetryRecord.DotNetReleaseDword">
+            <summary>
+            Use this link to determine the .NET version number to release DWORD
+            https://docs.microsoft.com/en-us/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed
+            </summary>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Telemetry.TelemetryRecord.GetAssignedProperties">
+            <summary>
+            Strips null, OMITTED, and empty guids from a TelemetryRecord
+            </summary>
+            <returns>All non-default properties and their values</returns>
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Telemetry.Resources.#cctor">
+            Creates the resource manager instance.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Telemetry.Resources.Get(System.String)">
+            Returns a localized string given a resource string name.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Telemetry.Resources.GetInt(System.String)">
+            Returns a localized integer given a resource string name.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Telemetry.Resources.GetBool(System.String)">
+            Returns a localized string given a resource string name.
+        </member>
+        <member name="M:Microsoft.VisualStudio.Services.Content.Common.Telemetry.Resources.Format(System.String,System.Object[])">
+            A little helper function to alleviate some typing associated with loading resources and
+            formatting the strings.  In DEBUG builds, it also asserts that the number of format
+            arguments and the length of args match.
+        </member>
+    </members>
+</doc>
